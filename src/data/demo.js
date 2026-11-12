@@ -30,9 +30,9 @@ export const announcements = [];
 export const gallery = [];
 
 export const services = [
-  { id: 1, name: 'Sabbath School', day: 'Saturday', time: '09:00 - 10:30', place: 'TNC Campus' },
-  { id: 2, name: 'Divine Service', day: 'Saturday', time: '11:00 - 13:00', place: 'TNC Campus' },
-  { id: 3, name: 'Midweek Prayer', day: 'Wednesday', time: '18:30 - 20:00', place: 'TNC Campus' },
+  { id: 1, name: 'Sabbath School', day: 'Saturday', time: '09:00 - 10:30', place: 'Chuo Kikuu SDA - Changanyikeni' },
+  { id: 2, name: 'Divine Service', day: 'Saturday', time: '11:00 - 13:00', place: 'Chuo Kikuu SDA - Changanyikeni' },
+  { id: 3, name: 'Daily Prayer', day: 'Sunday - Friday', time: '20:00 - 21:30', place: 'ALRD - UDSM' },
 ];
 
 // Members and families are created by people registering and by the admin: nothing is seeded.

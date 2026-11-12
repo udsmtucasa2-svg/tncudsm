@@ -15,10 +15,10 @@ export const contact = {
 
 // Replace each "#" with the real page URL.
 export const socials = [
-  { name: 'Facebook', url: '#', Icon: FaFacebookF },
-  { name: 'Instagram', url: '#', Icon: FaInstagram },
-  { name: 'YouTube', url: '#', Icon: FaYoutube },
-  { name: 'TikTok', url: '#', Icon: FaTiktok },
+  { name: 'Facebook', url: 'https://www.facebook.com/tucasaudsmnyererecampus', Icon: FaFacebookF },
+  { name: 'Instagram', url: 'https://www.instagram.com/tncudsm?cplk=MWhqYTZpZTFnbGNoMw==', Icon: FaInstagram },
+  { name: 'YouTube', url: 'https://youtube.com/@tncudsm?si=QoDbHAdfLz6Xthmo', Icon: FaYoutube },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@tucasa_nyerere_campus?_r=1&_t=ZS-9BLv51jbXoV', Icon: FaTiktok },
 ];
 
 // "Explore Our Faith" (About page). Edit freely: these are the points shown as cards.

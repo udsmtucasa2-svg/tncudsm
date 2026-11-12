@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { LuChevronDown, LuMenu, LuX, LuUser, LuLayoutDashboard } from 'react-icons/lu';
+import { LuChevronDown, LuMenu, LuUser, LuLayoutDashboard } from 'react-icons/lu';
 import { useAuth } from '../context/AuthContext.jsx';
 import { NAV } from '../data/navigation.js';
+import MobileSidebar from './MobileSidebar.jsx';
 
 // Both logos are always rendered (never hidden by breakpoint) so the brand is visible on every screen.
 // No card sits behind them. The SDA logo is drawn as a one-colour overlay: teal on light
@@ -21,12 +22,10 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const { user, isAdmin } = useAuth();
+  const close = useCallback(() => setOpen(false), []);
 
+  // Close the sidebar whenever the page changes.
   useEffect(() => { setOpen(false); }, [pathname]);
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
 
   const link = ({ isActive }) => `nav__link ${isActive ? 'active' : ''}`;
   const groupActive = (g) => g.children.some((c) => pathname === c.to || pathname.startsWith(`${c.to}/`));
@@ -40,7 +39,8 @@ export default function Navbar() {
           <span className="nav__name">TUCASA<small>Nyerere Campus UDSM</small></span>
         </Link>
 
-        <nav className={`nav__links ${open ? 'open' : ''}`} aria-label="Main">
+        {/* Desktop menu only. On phones it is hidden and the sidebar below is used instead. */}
+        <nav className="nav__links" aria-label="Main">
           {NAV.map((item) => (item.children ? (
             <div className="nav__item" key={item.label}>
               <span className={`nav__link ${groupActive(item) ? 'active' : ''}`} tabIndex={0} role="button" aria-haspopup="true">
@@ -53,12 +53,6 @@ export default function Navbar() {
           ) : (
             <NavLink key={item.to} to={item.to} end={item.end} className={link}>{item.label}</NavLink>
           )))}
-
-          {/* Only visible inside the phone menu */}
-          <div className="nav__mobile-extra">
-            {!user && <Link to="/register" className="btn btn--gold btn--block"><span>Join TNC</span></Link>}
-            <Link to={profileTo} className="btn btn--outline btn--block"><span>{user ? 'My Profile' : 'Member Login'}</span></Link>
-          </div>
         </nav>
 
         <div className="nav__right">
@@ -69,11 +63,13 @@ export default function Navbar() {
           <Link to={profileTo} className="nav__user" aria-label={user ? `My Profile (${user.name})` : 'Member Login'} title={user ? `My Profile (${user.name})` : 'Member Login'}>
             {user ? <span className="nav__initial">{user.name?.[0]?.toUpperCase()}</span> : <LuUser aria-hidden="true" />}
           </Link>
-          <button className="nav__toggle" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
-            {open ? <LuX aria-hidden="true" /> : <LuMenu aria-hidden="true" />}
+          <button className="nav__toggle" onClick={() => setOpen(true)} aria-label="Open menu" aria-haspopup="dialog" aria-controls="mobile-sidebar" aria-expanded={open}>
+            <LuMenu aria-hidden="true" />
           </button>
         </div>
       </div>
+
+      <MobileSidebar open={open} onClose={close} logo={<BrandLogos />} />
     </header>
   );
 }

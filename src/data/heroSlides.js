@@ -3,7 +3,7 @@
 // Keep slides evergreen (welcome, worship, ministries, music). Time-limited events belong on the Events page.
 export const heroSlides = [
   {
-    src: '/images/hero/hero-1.jpg',
+    src: '/images/hero/hero-7.jpg',
     alt: 'Worship at TNC UDSM',
     eyebrow: 'SDA Public Campus Ministries',
     title: 'Welcome to TNC UDSM',
