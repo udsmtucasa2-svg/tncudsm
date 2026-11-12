@@ -1,0 +1,437 @@
+[
+ {
+  "model": "leaders.leader",
+  "pk": 1,
+  "fields": {
+   "section": "executive",
+   "position": "Chairperson",
+   "level": "head",
+   "order": 1,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 2,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Chairperson",
+   "level": "deputy",
+   "order": 2,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 3,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Chairperson",
+   "level": "deputy",
+   "order": 3,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 4,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Chairperson",
+   "level": "deputy",
+   "order": 4,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 5,
+  "fields": {
+   "section": "executive",
+   "position": "Executive Secretary",
+   "level": "head",
+   "order": 5,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 6,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Secretary",
+   "level": "deputy",
+   "order": 6,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 7,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Secretary",
+   "level": "deputy",
+   "order": 7,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 8,
+  "fields": {
+   "section": "executive",
+   "position": "Deputy Secretary",
+   "level": "deputy",
+   "order": 8,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 9,
+  "fields": {
+   "section": "executive",
+   "position": "Chief Treasurer",
+   "level": "head",
+   "order": 9,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 10,
+  "fields": {
+   "section": "executive",
+   "position": "Assistant Treasurer",
+   "level": "deputy",
+   "order": 10,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 11,
+  "fields": {
+   "section": "executive",
+   "position": "Internal Auditor",
+   "level": "head",
+   "order": 11,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 12,
+  "fields": {
+   "section": "communication",
+   "position": "Communication Coordinator",
+   "level": "head",
+   "order": 12,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 13,
+  "fields": {
+   "section": "communication",
+   "position": "Deputy Communication Coordinator",
+   "level": "deputy",
+   "order": 13,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 14,
+  "fields": {
+   "section": "youth",
+   "position": "Youth Coordinator",
+   "level": "head",
+   "order": 14,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 15,
+  "fields": {
+   "section": "spiritual-evangelism",
+   "position": "Spiritual & Evangelism Coordinator",
+   "level": "head",
+   "order": 15,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 16,
+  "fields": {
+   "section": "spiritual-evangelism",
+   "position": "Deputy Spiritual & Evangelism Coordinator",
+   "level": "deputy",
+   "order": 16,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 17,
+  "fields": {
+   "section": "education",
+   "position": "Education Leader",
+   "level": "head",
+   "order": 17,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 18,
+  "fields": {
+   "section": "medical-missionary",
+   "position": "Medical Missionary Coordinator",
+   "level": "head",
+   "order": 18,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 19,
+  "fields": {
+   "section": "religious-liberty",
+   "position": "Religious Liberty Coordinator",
+   "level": "head",
+   "order": 19,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 20,
+  "fields": {
+   "section": "projects",
+   "position": "Project Manager",
+   "level": "head",
+   "order": 20,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 21,
+  "fields": {
+   "section": "projects",
+   "position": "Assistant Project Manager",
+   "level": "deputy",
+   "order": 21,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 22,
+  "fields": {
+   "section": "possibility-ministry",
+   "position": "Possibility Ministry Coordinator",
+   "level": "head",
+   "order": 22,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 23,
+  "fields": {
+   "section": "music",
+   "position": "Music Coordinator",
+   "level": "head",
+   "order": 23,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 24,
+  "fields": {
+   "section": "deacons",
+   "position": "Chief Deacon",
+   "level": "head",
+   "order": 24,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 25,
+  "fields": {
+   "section": "deacons",
+   "position": "Chief Deaconess",
+   "level": "head",
+   "order": 25,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 26,
+  "fields": {
+   "section": "deacons",
+   "position": "Deacon",
+   "level": "member",
+   "order": 26,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 27,
+  "fields": {
+   "section": "deacons",
+   "position": "Deacon",
+   "level": "member",
+   "order": 27,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 28,
+  "fields": {
+   "section": "deacons",
+   "position": "Deaconess",
+   "level": "member",
+   "order": 28,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ },
+ {
+  "model": "leaders.leader",
+  "pk": 29,
+  "fields": {
+   "section": "deacons",
+   "position": "Deaconess",
+   "level": "member",
+   "order": 29,
+   "name": "",
+   "phone": "",
+   "email": "",
+   "bio": "",
+   "is_published": false
+  }
+ }
+]

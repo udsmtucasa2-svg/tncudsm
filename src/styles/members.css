@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Members: registration, member dashboard and the admin Members page.
+   Teal and navy lead. The gold-to-white gradient is used only on small cards (.card--small).
+   ========================================================================== */
+
+/* ---------- Registration ---------- */
+.mem-wrap { min-height: calc(100vh - var(--nav-h)); display: grid; justify-items: center; align-items: start; padding: 40px 0 64px; background: var(--gray-soft); }
+.mem-box { width: min(640px, 92%); background: var(--white); border-radius: 18px; box-shadow: var(--shadow); padding: 36px; }
+.mem-logos { display: flex; justify-content: center; margin-bottom: 14px; }
+.mem-title { text-align: center; font-size: 1.7rem; margin-bottom: 20px; }
+
+.mem-as { border: 0; margin: 0 0 22px; padding: 0; }
+.mem-as legend { padding: 0; margin-bottom: 10px; font-weight: 600; font-size: 14px; }
+.mem-as__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mem-choice { position: relative; display: grid; justify-items: center; gap: 6px; padding: 14px 8px; border: 1.5px solid var(--gray); border-radius: 12px; text-align: center; font-size: 14px; font-weight: 600; color: var(--navy); cursor: pointer; transition: border-color .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.mem-choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.mem-choice svg { width: 22px; height: 22px; color: var(--teal); transition: color .3s var(--ease); }
+.mem-choice:hover { border-color: var(--teal); }
+.mem-choice.is-on { background: var(--teal); border-color: var(--teal); color: var(--white); }
+.mem-choice.is-on svg { color: var(--white); }
+.mem-choice:focus-within { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+.mem-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 8px; }
+.mem-steps i { height: 5px; border-radius: 5px; background: var(--gray); transition: background .4s var(--ease); }
+.mem-steps i.is-done { background: var(--teal); }
+.mem-step-label { margin: 0 0 18px; font-weight: 600; color: var(--teal); font-size: 14.5px; }
+
+.mem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.mem-field { display: grid; gap: 6px; align-content: start; min-width: 0; font-size: 14px; font-weight: 500; }
+.mem-field--wide { grid-column: 1 / -1; }
+.mem-field input, .mem-field select { width: 100%; padding: 12px 14px; border: 1px solid var(--gray); border-radius: 8px; font: inherit; color: var(--navy); background: var(--white); }
+.mem-field input:focus, .mem-field select:focus { outline: 2px solid var(--teal); border-color: transparent; }
+.mem-hint { grid-column: 1 / -1; margin: 0; font-size: 13.5px; color: var(--text); }
+.mem-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+@media (max-width: 560px) {
+  .mem-box { padding: 26px 20px; }
+  .mem-grid { grid-template-columns: 1fr; }
+  .mem-as__grid { gap: 8px; }
+  .mem-choice { padding: 12px 4px; font-size: 12.5px; }
+}
+
+/* ---------- Member dashboard ---------- */
+.mem-dash { display: grid; gap: 24px; }
+.mem-profile { display: grid; grid-template-columns: auto 1fr auto; gap: 26px; align-items: center; height: auto; }
+.mem-avatar { position: relative; width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--white); box-shadow: 0 0 0 3px var(--teal); background: var(--teal); color: var(--white); display: grid; place-items: center; font: 700 36px var(--font); }
+.mem-avatar > img, .mem-avatar > span { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: grid; place-items: center; }
+.mem-avatar__btn { position: absolute; right: -4px; bottom: -4px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: var(--white); border: 3px solid var(--white); cursor: pointer; transition: background .3s var(--ease); }
+.mem-avatar__btn:hover, .mem-avatar__btn:focus-within { background: var(--teal); }
+.mem-avatar__btn svg { width: 18px; height: 18px; }
+.mem-profile h2 { font-size: 1.6rem; margin-bottom: 8px; }
+.mem-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.mem-muted { margin: 0 0 6px; color: var(--text); font-size: 14.5px; }
+.mem-progress { margin-top: 12px; max-width: 380px; }
+.mem-progress__bar { height: 8px; border-radius: 8px; background: var(--gray); overflow: hidden; }
+.mem-progress__bar i { display: block; height: 100%; background: var(--teal); border-radius: 8px; }
+.mem-progress small { display: block; margin-top: 6px; color: var(--text); }
+.mem-profile__actions { display: grid; gap: 10px; }
+.mem-ok { margin: 0; padding: 10px 14px; border-radius: 8px; background: #e3f5ea; border: 1px solid #b9e2c9; color: #1b6b3a; font-size: 14.5px; }
+.mem-note { margin: 0; padding: 14px 16px; border-radius: var(--radius); background: var(--gray-soft); border-left: 4px solid var(--gold); color: var(--navy); }
+.mem-edit h3 { margin-bottom: 16px; }
+.mem-info .card h3 { font-size: 1.1rem; margin-bottom: 14px; }
+.mem-dl { display: grid; gap: 12px; margin: 0; }
+.mem-dl dt { font-size: 12.5px; color: var(--text); }
+.mem-dl dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.mem-h2 { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; margin-bottom: 6px; }
+.mem-h2 svg { width: 24px; height: 24px; color: var(--teal); }
+.mem-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 14px; margin-top: 14px; }
+.mem-person { display: flex; align-items: center; gap: 12px; padding: 14px 16px; height: auto; }
+.mem-person b { display: block; font-size: 15px; }
+.mem-person small { display: block; color: var(--text); }
+.mem-avatar-sm { flex: 0 0 auto; border-radius: 50%; overflow: hidden; display: inline-grid; place-items: center; background: var(--teal); color: var(--white); font-weight: 700; font-family: var(--font); }
+.mem-avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 820px) {
+  .mem-profile { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .mem-pills { justify-content: center; }
+  .mem-progress { margin-inline: auto; }
+  .mem-profile__actions { grid-auto-flow: column; }
+}
+@media (max-width: 420px) { .mem-profile__actions { grid-auto-flow: row; width: 100%; } }
+
+/* ---------- Admin: Members page ---------- */
+.mgr-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.mgr-stat { display: grid; gap: 4px; padding: 16px 18px; background: var(--white); border: 1px solid var(--adm-line); border-radius: 14px; }
+.mgr-stat b { font: 700 1.7rem var(--font); line-height: 1; }
+.mgr-stat span { color: #5b6b85; font-size: 13.5px; }
+.mgr-by { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5b6b85; }
+.mgr-group { border-bottom: 1px solid var(--adm-line); }
+.mgr-group:last-child { border-bottom: 0; }
+.mgr-group > summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f8fafc; cursor: pointer; font-weight: 600; }
+.mgr-group > summary::-webkit-details-marker { display: none; }
+.mgr-group__chev { width: 18px; height: 18px; color: #7f8ea6; transition: transform .3s var(--ease); }
+.mgr-group:not([open]) .mgr-group__chev { transform: rotate(-90deg); }
+.mgr-group__count { min-width: 28px; padding: 2px 10px; border-radius: 999px; background: var(--teal); color: var(--white); font-size: 12.5px; text-align: center; }
+.mgr-group__split { margin-right: auto; color: #6b7a93; font-size: 13px; font-weight: 500; }
+.mgr-row { cursor: pointer; }
+.mgr-row:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
+.mgr-empty { margin: 0; padding: 18px 16px; color: #6b7a93; font-size: 14px; }
+.mgr-profile { display: flex; align-items: center; gap: 16px; padding: 22px 22px 0; }
+.mgr-profile h3 { margin: 0 0 2px; font-size: 1.25rem; }
+.mgr-profile p { margin: 0; color: #5b6b85; }
+.mgr-details { margin: 0; padding: 18px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; overflow-y: auto; }
+.mgr-detail dt { font-size: 12.5px; color: #6b7a93; }
+.mgr-detail dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.mgr-move, .mgr-form { padding: 0 22px 22px; }
+.mgr-form { padding-top: 22px; }
+.mgr-form p { margin: 0 0 16px; color: #5b6b85; font-size: 14.5px; }
+.mgr-note { margin: 0; padding: 0 22px 22px; color: #5b6b85; font-size: 14.5px; }
+@media (max-width: 600px) { .mgr-details { grid-template-columns: 1fr; } }
