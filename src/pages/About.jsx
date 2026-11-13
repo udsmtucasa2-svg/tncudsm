@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { LuArrowRight, LuLandmark, LuUsers, LuBookOpen } from 'react-icons/lu';
+import { LuLandmark, LuUsers, LuBookOpen } from 'react-icons/lu';
 import PageBanner from '../components/PageBanner.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import Reveal from '../components/Reveal.jsx';
 import Button from '../components/Button.jsx';
 import BlobCard, { BlobGrid } from '../components/BlobCard.jsx';
 import { beliefImageCandidates } from '../data/beliefImages.js';
-import { Icon } from '../lib/icons.jsx';
 import { about } from '../data/site.js';
-import { beliefGroups, story, structure } from '../data/beliefs.js';
+import { beliefGroups } from '../data/beliefs.js';
 import './About.css';
 
 const values = [
@@ -19,13 +17,6 @@ const values = [
 ];
 
 const tones = ['teal', 'gold', 'navy'];
-
-const doing = [
-  { icon: 'church', title: 'Worship', text: 'Sabbath School and Divine Service every Sabbath.', to: '/#worship' },
-  { icon: 'evangelism', title: 'Bible study', text: 'Study the Bible with a friendly guide.', to: '/bible-study' },
-  { icon: 'music', title: 'Music', text: 'Join the choir and praise teams.', to: '/choir' },
-  { icon: 'medical', title: 'Health and service', text: 'Care for body, mind and community.', to: '/departments' },
-];
 
 // Section tones alternate white / light grey down the page.
 export default function About() {
@@ -105,58 +96,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 4. Our story */}
-      <section className={`section ${tone()}`}>
-        <div className="container container--narrow">
-          <SectionHeading eyebrow="Our story" title="From a Bible study movement to a worldwide family" />
-          <ol className="timeline">
-            {story.map((s) => (
-              <li key={s.year} className="timeline__item">
-                <span className="timeline__year">{s.year}</span>
-                <div><h3>{s.title}</h3><p>{s.text}</p></div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 5. How the church is organised (a simple stepper, no cards) */}
-      <section className={`section ${tone()}`}>
-        <div className="container">
-          <SectionHeading eyebrow="One worldwide church" title="How the Church Is Organised" />
-          <p className="lead">TNC is part of a global family. Every level works together for the same mission.</p>
-          <ol className="structure">
-            {structure.map(([name, text], i) => (
-              <li key={name} className={i === 0 ? 'is-here' : ''}>
-                <span className="structure__dot">{i + 1}</span>
-                <b>{name}</b>
-                <span className="structure__text">{text}</span>
-                {i === 0 && <em>TNC UDSM is here</em>}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 6. What we do (icon list, no cards) */}
-      <section className={`section ${tone()}`}>
-        <div className="container">
-          <SectionHeading eyebrow="Get involved" title="What We Do" />
-          <ul className="doing">
-            {doing.map((d) => (
-              <li key={d.title}>
-                <Link to={d.to} className="doing__item">
-                  <span className="doing__icon"><Icon name={d.icon} /></span>
-                  <span className="doing__body"><b>{d.title}</b><span>{d.text}</span></span>
-                  <LuArrowRight className="doing__go" aria-hidden="true" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 8. Invitation */}
+      {/* 4. Invitation */}
       <section className="about-cta">
         <div className="container about-cta__inner">
           <div><h2>You are welcome here</h2><p>Come to worship this Sabbath, or join the family online.</p></div>

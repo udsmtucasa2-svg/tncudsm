@@ -1,167 +1,81 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { LuArrowRight, LuLandmark, LuUsers, LuBookOpen } from 'react-icons/lu';
-import PageBanner from '../components/PageBanner.jsx';
-import SectionHeading from '../components/SectionHeading.jsx';
-import Reveal from '../components/Reveal.jsx';
-import Button from '../components/Button.jsx';
-import BlobCard, { BlobGrid } from '../components/BlobCard.jsx';
-import { Icon } from '../lib/icons.jsx';
-import { about } from '../data/site.js';
-import { beliefGroups, story, structure } from '../data/beliefs.js';
-import './About.css';
+/* ======================================================================
+   Home "About us" preview: Vision / Mission / Beliefs tabs.
+   Uses the shared .tabs/.tab (styles/tabs.css) and BlobCard (components/BlobCard.css).
+   ====================================================================== */
+.about-panel { animation: rise .5s var(--ease) both; }
 
-const values = [
-  { icon: 'faith', title: 'Faith', text: 'Rooted in the Word of God and the Adventist message.' },
-  { icon: 'users', title: 'Fellowship', text: 'A welcoming family for every student on campus.' },
-  { icon: 'service', title: 'Service', text: 'Serving our campus and community with love.' },
-];
+/* Vision / Mission feature card */
+.about-feature {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 52px);
+  border-radius: 28px;
+  background: var(--grad-navy);
+  color: var(--white);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  isolation: isolate;
+}
+.about-feature::before,
+.about-feature::after {
+  content: ''; position: absolute; z-index: -1; border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+}
+.about-feature::before {
+  width: 320px; height: 320px; right: -90px; top: -110px;
+  background: color-mix(in srgb, var(--teal) 55%, transparent);
+}
+.about-feature::after {
+  width: 200px; height: 200px; left: -70px; bottom: -90px;
+  background: color-mix(in srgb, var(--gold) 28%, transparent);
+}
 
-const tones = ['teal', 'gold', 'navy'];
+/* Icon blob */
+.about-feature__blob {
+  position: relative; display: block; width: 150px; height: 150px; flex-shrink: 0;
+}
+.about-feature__blob::before {
+  content: ''; position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--white) 18%, transparent);
+  border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+  animation: about-morph 9s ease-in-out infinite alternate;
+}
+.about-feature__blob > span {
+  position: absolute; inset: 9% 10% 10% 9%; display: grid; place-items: center;
+  background: var(--gold); color: var(--navy);
+  border-radius: 46% 54% 42% 58% / 56% 44% 56% 44%;
+  animation: about-morph 9s ease-in-out infinite alternate-reverse;
+}
+.about-feature__blob svg { width: 42%; height: 42%; }
+@keyframes about-morph {
+  to { border-radius: 44% 56% 48% 52% / 56% 44% 58% 42%; }
+}
 
-const doing = [
-  { icon: 'church', title: 'Worship', text: 'Sabbath School and Divine Service every Sabbath.', to: '/#worship' },
-  { icon: 'evangelism', title: 'Bible study', text: 'Study the Bible with a friendly guide.', to: '/bible-study' },
-  { icon: 'music', title: 'Music', text: 'Join the choir and praise teams.', to: '/choir' },
-  { icon: 'medical', title: 'Health and service', text: 'Care for body, mind and community.', to: '/departments' },
-];
+/* Text */
+.about-feature__eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  font: 600 13px var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+}
+.about-feature__eyebrow::before { content: ''; width: 28px; height: 3px; border-radius: 3px; background: var(--gold); }
+.about-feature__text p {
+  margin: 0; font: 400 clamp(1.1rem, 2.4vw, 1.55rem)/1.55 var(--font); color: var(--white);
+}
 
-// Section tones alternate white / light grey down the page.
-export default function About() {
-  // Flatten the groups into one numbered list (1 to 28), remembering each belief's group for the filter and colour.
-  const all = useMemo(() => {
-    let num = 0;
-    return beliefGroups.flatMap((g, gi) => g.items.map(([name, text]) => ({ num: ++num, name, text, group: g.key, icon: g.icon, tone: tones[gi % 3] })));
-  }, []);
-  const total = all.length;
-  const [filter, setFilter] = useState('all');
-  const shown = filter === 'all' ? all : all.filter((b) => b.group === filter);
+/* Beliefs tab */
+.about-count {
+  display: inline-block; margin-top: 12px; padding: 3px 12px; border-radius: 999px;
+  background: var(--tint); color: var(--teal); font: 600 12.5px var(--font);
+}
 
-  let n = 0;
-  const tone = () => (n++ % 2 ? 'section--soft' : '');
-
-  return (
-    <>
-      <PageBanner title="About TNC" subtitle="Seventh-day Adventist Church, Public Campus Ministries" />
-
-      {/* 1. Who we are */}
-      <section className={`section ${tone()}`}>
-        <div className="container container--text">
-          <SectionHeading eyebrow="Who we are" title="TNC UDSM" />
-          <p>TNC UDSM is the Seventh-day Adventist student fellowship at TUCASA Nyerere Campus, University of Dar es Salaam. We gather for worship, Bible study, music, health outreach and evangelism, and we support students spiritually through their university journey.</p>
-          <ul className="about-facts">
-            <li><LuLandmark aria-hidden="true" />Seventh-day Adventist Church</li>
-            <li><LuUsers aria-hidden="true" />Public Campus Ministries</li>
-            <li><LuBookOpen aria-hidden="true" />TUCASA Nyerere Campus</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* 2. Mission and vision, then values: blob cards, three across (stacked rows on phones) */}
-      <section className={`section ${tone()}`}>
-        <div className="container">
-          <SectionHeading eyebrow="Why we exist" title="Our Mission, Vision and Values" />
-          <BlobGrid>
-            <Reveal><BlobCard icon="mission" tone="teal" title="Our Mission" text={about.mission} /></Reveal>
-            <Reveal delay={80}><BlobCard icon="vision" tone="gold" title="Our Vision" text={about.vision} /></Reveal>
-            <Reveal delay={160}><BlobCard icon="users" tone="navy" title="Our Values" text="Faith, Fellowship and Service guide everything we do." /></Reveal>
-          </BlobGrid>
-          <h3 className="about-sub">What we value</h3>
-          <BlobGrid>
-            {values.map((v, i) => (
-              <Reveal key={v.title} delay={i * 80}><BlobCard icon={v.icon} tone={tones[i]} title={v.title} text={v.text} /></Reveal>
-            ))}
-          </BlobGrid>
-        </div>
-      </section>
-
-      {/* 3. What we believe: the 28 Fundamental Beliefs (kept at #faith for the Explore Our Faith buttons) */}
-      <section className={`section ${tone()}`} id="faith">
-        <div className="container">
-          <SectionHeading eyebrow="What we believe" title="Explore Our Faith" />
-          <p className="lead">{about.beliefs} Our {total} Fundamental Beliefs come from the Bible. Pick a group to focus on it.</p>
-          <div className="tabs" role="tablist" aria-label="Belief groups">
-            <button role="tab" aria-selected={filter === 'all'} className={`tab ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All {total}</button>
-            {beliefGroups.map((g) => (
-              <button key={g.key} role="tab" aria-selected={filter === g.key} className={`tab ${filter === g.key ? 'active' : ''}`} onClick={() => setFilter(g.key)}>{g.title}</button>
-            ))}
-          </div>
-          <BlobGrid className="beliefs-grid" key={filter}>
-            {shown.map((b, i) => (
-              <Reveal key={b.num} delay={(i % 3) * 80}>
-                <BlobCard icon={b.icon} tone={b.tone} badge={b.num} title={b.name} text={b.text} />
-              </Reveal>
-            ))}
-          </BlobGrid>
-          <p className="beliefs__source">Full statements: <a href="https://www.adventist.org/beliefs/" target="_blank" rel="noreferrer">adventist.org/beliefs</a></p>
-          <div className="center-row">
-            <Button to="/bible-study" variant="gold" arrow>Request a Bible Study</Button>
-            <Button to="/prayer-request" variant="outline">Submit a Prayer Request</Button>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Our story */}
-      <section className={`section ${tone()}`}>
-        <div className="container container--narrow">
-          <SectionHeading eyebrow="Our story" title="From a Bible study movement to a worldwide family" />
-          <ol className="timeline">
-            {story.map((s) => (
-              <li key={s.year} className="timeline__item">
-                <span className="timeline__year">{s.year}</span>
-                <div><h3>{s.title}</h3><p>{s.text}</p></div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 5. How the church is organised (a simple stepper, no cards) */}
-      <section className={`section ${tone()}`}>
-        <div className="container">
-          <SectionHeading eyebrow="One worldwide church" title="How the Church Is Organised" />
-          <p className="lead">TNC is part of a global family. Every level works together for the same mission.</p>
-          <ol className="structure">
-            {structure.map(([name, text], i) => (
-              <li key={name} className={i === 0 ? 'is-here' : ''}>
-                <span className="structure__dot">{i + 1}</span>
-                <b>{name}</b>
-                <span className="structure__text">{text}</span>
-                {i === 0 && <em>TNC UDSM is here</em>}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 6. What we do (icon list, no cards) */}
-      <section className={`section ${tone()}`}>
-        <div className="container">
-          <SectionHeading eyebrow="Get involved" title="What We Do" />
-          <ul className="doing">
-            {doing.map((d) => (
-              <li key={d.title}>
-                <Link to={d.to} className="doing__item">
-                  <span className="doing__icon"><Icon name={d.icon} /></span>
-                  <span className="doing__body"><b>{d.title}</b><span>{d.text}</span></span>
-                  <LuArrowRight className="doing__go" aria-hidden="true" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 8. Invitation */}
-      <section className="about-cta">
-        <div className="container about-cta__inner">
-          <div><h2>You are welcome here</h2><p>Come to worship this Sabbath, or join the family online.</p></div>
-          <div className="about-cta__actions">
-            <Button to="/register" variant="gold" arrow>Join TNC</Button>
-            <Button to="/contact" variant="light">Contact us</Button>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+@media (max-width: 720px) {
+  .about-feature { grid-template-columns: 1fr; justify-items: center; text-align: center; border-radius: 22px; }
+  .about-feature__blob { width: 112px; height: 112px; }
+  .about-feature__eyebrow { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-feature__blob::before, .about-feature__blob > span { animation: none; }
 }
