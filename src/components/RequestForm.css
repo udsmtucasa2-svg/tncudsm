@@ -1,0 +1,35 @@
+/* ======================================================================
+   Styles for RequestForm only. Keep rules for this component in this file.
+   ====================================================================== */
+.form-note {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--gray-soft);
+  border-left: 3px solid var(--gold);
+  font-size: 13.5px;
+  color: var(--text);
+}
+.rform {
+  margin-top: 28px;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 34px);
+  box-shadow: var(--shadow);
+}
+.rform__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.rform .field--wide, .rform .check { grid-column: 1 / -1; }
+.rform .btn { margin-top: 6px; }
+.rform--done { text-align: center; }
+.rform__tick { display: grid; place-items: center; width: 60px; height: 60px; margin: 0 auto 12px; border-radius: 50%; background: var(--teal); color: var(--white); }
+.rform__tick svg { width: 28px; height: 28px; }
+.rform .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; margin: 0 0 16px; }
+.rform .check input { margin-top: 3px; accent-color: var(--teal); }
+@media (max-width: 640px) {
+  .rform__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .rform { margin-top: 18px; border-radius: 12px; }
+}

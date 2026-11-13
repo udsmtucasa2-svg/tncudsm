@@ -1,0 +1,13 @@
+/* ======================================================================
+   Styles for Loader only. Keep rules for this component in this file.
+   ====================================================================== */
+.loader-screen { position: fixed; inset: 0; z-index: 999; display: grid; place-items: center; background: var(--grad-hero); color: var(--gold); }
+.ld-wrap { position: relative; display: grid; place-items: center; }
+.ld-wrap img { position: absolute; width: 42px; border-radius: 8px; }
+.ld-trio { position: relative; width: 96px; height: 96px; }
+.ld-trio i { position: absolute; border: 3px solid transparent; border-top-color: currentColor; border-radius: 50%; }
+.ld-trio i:nth-child(1) { inset: 0; animation: spin 1.2s linear infinite; }
+.ld-trio i:nth-child(2) { inset: 10px; animation: spin .9s linear infinite reverse; opacity: .65; }
+.ld-trio i:nth-child(3) { inset: 20px; animation: spin .6s linear infinite; opacity: .35; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-inline { display: grid; place-items: center; padding: 60px 0; color: var(--teal); }

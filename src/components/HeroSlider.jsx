@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 import Button from './Button.jsx';
 import { heroSlides } from '../data/heroSlides.js';
+import './HeroSlider.css';
 
 const INTERVAL = 6000;
 const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -56,10 +57,20 @@ export default function HeroSlider() {
         ))}
       </div>
       <div className="hs__shade" />
+      <svg className="hs__wave" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="hs-wave-back" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" style={{ stopColor: 'var(--navy)' }} />
+            <stop offset="0.55" style={{ stopColor: 'var(--teal)' }} />
+            <stop offset="1" style={{ stopColor: 'var(--gold)' }} />
+          </linearGradient>
+        </defs>
+        <path className="hs__wave-back" fill="url(#hs-wave-back)" d="M0 58C190 6 400 0 640 44s520 78 800 10V140H0Z" />
+        <path className="hs__wave-front" d="M0 96C230 30 450 30 700 76s500 52 740 0V140H0Z" />
+      </svg>
 
       <div className="container hs__body">
         <div key={index} className="hs__content" aria-live="polite">
-          <span className="hs__tag">{slide.eyebrow}</span>
           <h1>{slide.title}<span>{slide.accent}</span></h1>
           <p>{slide.text}</p>
           <div className="hs__actions">

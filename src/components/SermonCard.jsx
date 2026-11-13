@@ -1,5 +1,6 @@
 import { LuPlay, LuUser, LuCalendarDays, LuArrowRight } from 'react-icons/lu';
 import { fmtDate } from '../lib/arrange.js';
+import './SermonCard.css';
 
 // One sermon card for the Sermons page and the home page.
 export default function SermonCard({ s }) {

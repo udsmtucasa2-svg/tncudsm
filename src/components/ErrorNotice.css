@@ -1,0 +1,5 @@
+/* ======================================================================
+   Styles for ErrorNotice only. Keep rules for this component in this file.
+   ====================================================================== */
+.notice { text-align: center; padding: 36px 16px; border: 1px dashed var(--gray); border-radius: var(--radius); }
+.notice p { margin: 0 0 16px; }

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './ErrorBoundary.css';
 
 // Last line of defence: if any component throws, show a branded message instead of a blank page.
 export default class ErrorBoundary extends Component {

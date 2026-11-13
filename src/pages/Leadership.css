@@ -1,0 +1,8 @@
+/* ======================================================================
+   Styles for Leadership only. Keep rules for this component in this file.
+   ====================================================================== */
+.leader-section { margin-bottom: 48px; }
+
+@media (max-width: 560px) {
+  .leader-section { margin-bottom: 30px; }
+}

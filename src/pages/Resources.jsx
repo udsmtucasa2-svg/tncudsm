@@ -6,6 +6,7 @@ import ErrorNotice from '../components/ErrorNotice.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
+import './Resources.css';
 
 export default function Resources() {
   const { data, loading, error, reload } = useFetch(api.getResources);

@@ -7,6 +7,7 @@ import Reveal from '../components/Reveal.jsx';
 import Button from '../components/Button.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
+import './Sports.css';
 
 export default function Sports() {
   const { data, loading, error, reload } = useFetch(api.getSports);
@@ -22,7 +23,7 @@ export default function Sports() {
             <div className="grid grid--3">
               {data.map((s, i) => (
                 <Reveal key={s.id} delay={(i % 3) * 80}>
-                  <article className="card fx fx-up fx-tint sports__card">
+                  <article className="card card--tile fx fx-up fx-tint sports__card">
                     <span className="icon-tile"><LuTrophy aria-hidden="true" /></span>
                     <h3>{s.name}</h3>
                     {s.description && <p>{s.description}</p>}

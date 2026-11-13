@@ -1,0 +1,23 @@
+/* ======================================================================
+   Styles for EventDetail only. Keep rules for this component in this file.
+   ====================================================================== */
+.detail { display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; align-items: start; }
+.detail__img { width: 100%; border-radius: var(--radius); }
+.detail__text { margin-top: 20px; }
+.detail__text p { font-size: 1.05rem; color: var(--text); }
+.detail__panel { position: sticky; top: calc(var(--nav-h) + 20px); background: var(--white); border: 1px solid var(--gray); border-radius: var(--radius); padding: 24px; }
+.detail__panel h2 { font-size: 1.15rem; }
+.detail__panel .facts { border-top: 0; padding-top: 0; }
+.detail__panel .facts > div { grid-template-columns: 96px 1fr; padding: 10px 0; border-bottom: 1px solid var(--gray); }
+.detail__panel .facts > div:last-child { border-bottom: 0; }
+@media (max-width: 860px) {
+  .detail { grid-template-columns: 1fr; }
+  .detail__panel { position: static; }
+}
+
+@media (max-width: 560px) {
+  .detail { gap: 20px; }
+  .detail__panel { padding: 16px; }
+  .detail__text p { font-size: 1rem; }
+  .detail__panel .facts > div { grid-template-columns: 84px 1fr; padding: 8px 0; }
+}

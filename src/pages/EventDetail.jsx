@@ -6,6 +6,7 @@ import Loader from '../components/Loader.jsx';
 import ErrorNotice from '../components/ErrorNotice.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
+import './EventDetail.css';
 
 export default function EventDetail() {
   const { id } = useParams();

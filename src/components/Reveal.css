@@ -1,0 +1,8 @@
+/* ======================================================================
+   Styles for Reveal only. Keep rules for this component in this file.
+   ====================================================================== */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}

@@ -5,6 +5,7 @@ import Button from '../components/Button.jsx';
 import { BrandLogos } from '../components/Navbar.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { ROLES } from '../lib/members.js';
+import './Auth.css';
 
 export function AuthShell({ title, children, footer, subtitle, wide }) {
   return (

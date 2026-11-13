@@ -4,10 +4,11 @@ import { sections } from '../data/leadershipStructure.js';
 import { contact } from '../data/site.js';
 import { SocialLinks } from './home/ContactSocial.jsx';
 import { BrandLogos } from './Navbar.jsx';
+import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer wave-top">
       <div className="container footer__grid">
         <div>
           <BrandLogos size="lg" tone="white" />

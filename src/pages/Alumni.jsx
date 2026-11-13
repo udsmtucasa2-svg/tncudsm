@@ -21,7 +21,7 @@ export default function Alumni() {
           <div className="grid grid--3">
             {points.map(({ Icon, title, text }, i) => (
               <Reveal key={title} delay={i * 80}>
-                <article className="card fx fx-skew fx-teal">
+                <article className="card card--tile fx fx-skew fx-teal">
                   <span className="icon-tile"><Icon aria-hidden="true" /></span>
                   <h3>{title}</h3>
                   <p>{text}</p>

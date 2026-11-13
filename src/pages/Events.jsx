@@ -7,6 +7,7 @@ import EmptyState from '../components/EmptyState.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { upcomingEvents, pastEvents } from '../lib/arrange.js';
+import './Events.css';
 
 export default function Events() {
   const { data, loading, error, reload } = useFetch(api.getEvents);

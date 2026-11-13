@@ -1,0 +1,61 @@
+/* ======================================================================
+   Buttons (.btn). One style, four colours. Used across the whole site, so it is loaded globally.
+   ====================================================================== */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: color .4s var(--ease), border-color .4s var(--ease);
+}
+.btn svg { width: 18px; height: 18px; }
+.btn::before, .btn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: var(--btn-fill, var(--navy));
+  transition: transform .4s var(--ease);
+  pointer-events: none;
+}
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn:disabled::before, .btn:disabled::after { transform: none !important; }
+.btn__icon { transition: transform .25s var(--ease); }
+.btn:hover .btn__icon { transform: translateX(4px); }
+.btn--primary::before, .btn--gold::before { top: 0; bottom: 0; left: -15%; width: 130%; transform: translateX(-110%) skewX(-20deg); }
+.btn--primary::after, .btn--gold::after { display: none; }
+.btn--primary:is(:hover, :focus-visible):not(:disabled)::before, .btn--gold:is(:hover, :focus-visible):not(:disabled)::before { transform: translateX(0) skewX(-20deg); }
+.btn--primary { background: var(--teal); color: var(--white); --btn-fill: var(--navy); }
+.btn--gold { background: var(--gold); color: var(--navy); --btn-fill: var(--navy); }
+.btn--gold:is(:hover, :focus-visible):not(:disabled) { color: var(--white); }
+.btn--outline::before, .btn--light::before { inset: 0 50% 0 0; transform: translateX(-100%); }
+.btn--outline::after, .btn--light::after { inset: 0 0 0 50%; transform: translateX(100%); }
+.btn--outline:is(:hover, :focus-visible):not(:disabled)::before, .btn--outline:is(:hover, :focus-visible):not(:disabled)::after,
+.btn--light:is(:hover, :focus-visible):not(:disabled)::before, .btn--light:is(:hover, :focus-visible):not(:disabled)::after {
+  transform: translateX(0);
+}
+.btn--outline { background: transparent; color: var(--teal); border-color: var(--teal); --btn-fill: var(--teal); }
+.btn--outline:is(:hover, :focus-visible):not(:disabled) { color: var(--white); }
+.btn--light { background: transparent; color: var(--white); border-color: rgba(255,255,255,.7); --btn-fill: var(--white); }
+.btn--light:is(:hover, :focus-visible):not(:disabled) { color: var(--navy); }
+.btn--block { display: flex; width: 100%; }
+.btn--sm { padding: 8px 16px; font-size: 13px; }
+
+@media (max-width: 560px) {
+  .btn { padding: 11px 18px; font-size: 13px; letter-spacing: .04em; }
+  .btn svg { width: 16px; height: 16px; }
+  .btn--sm { padding: 8px 14px; font-size: 12.5px; }
+}

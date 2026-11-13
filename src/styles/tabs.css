@@ -1,0 +1,32 @@
+/* ======================================================================
+   Filter tabs (.tabs/.tab), shared by About, Leadership, Resources and sign-in role tabs.
+   ====================================================================== */
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 36px; }
+.tab {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--gray);
+  background: var(--white);
+  color: var(--navy);
+  font: 500 14px var(--font);
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .4s var(--ease), border-color .4s var(--ease);
+}
+.tab::before, .tab::after { content: ''; position: absolute; z-index: -1; background: var(--teal); transition: transform .4s var(--ease); }
+.tab::before { inset: 0 50% 0 0; transform: translateX(-100%); }
+.tab::after { inset: 0 0 0 50%; transform: translateX(100%); }
+.tab:hover, .tab.active { border-color: var(--teal); color: var(--white); }
+.tab:hover::before, .tab:hover::after, .tab.active::before, .tab.active::after { transform: translateX(0); }
+@media (max-width: 720px) {
+  .tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; }
+}
+
+@media (max-width: 560px) {
+  .tab { font-size: 13px; padding: 7px 14px; }
+  .tabs { gap: 8px; margin-bottom: 22px; }
+}

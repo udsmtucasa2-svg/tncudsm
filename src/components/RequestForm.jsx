@@ -3,6 +3,7 @@ import { LuCheck } from 'react-icons/lu';
 import { Input, Select } from './FormFields.jsx';
 import Button from './Button.jsx';
 import { api, isLocalMode } from '../services/api.js';
+import './RequestForm.css';
 
 // One form component for Bible study requests, prayer requests and contact messages.
 // fields: [{ name, label, type: text|email|tel|textarea|select|checkbox, required, hint, options, placeholder }]

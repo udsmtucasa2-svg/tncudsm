@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './Reveal.css';
 
 // Fades content up once when it scrolls into view. Content stays visible if the browser
 // has no IntersectionObserver, and CSS disables the effect for reduced-motion users.

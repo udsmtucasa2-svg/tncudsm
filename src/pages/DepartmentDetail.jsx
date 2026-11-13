@@ -8,6 +8,7 @@ import ErrorNotice from '../components/ErrorNotice.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { byOrder } from '../lib/arrange.js';
+import './Departments.css';
 
 export default function DepartmentDetail() {
   const { slug } = useParams();

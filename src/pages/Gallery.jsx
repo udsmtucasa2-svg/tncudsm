@@ -5,6 +5,7 @@ import ErrorNotice from '../components/ErrorNotice.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
+import './Gallery.css';
 
 export default function Gallery() {
   const { data, loading, error, reload } = useFetch(api.getGallery);

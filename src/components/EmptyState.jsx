@@ -1,4 +1,5 @@
 import { LuInbox } from 'react-icons/lu';
+import './EmptyState.css';
 
 // Friendly message when a list has nothing yet (instead of fake placeholder content).
 export default function EmptyState({ icon: Icon = LuInbox, title, children }) {

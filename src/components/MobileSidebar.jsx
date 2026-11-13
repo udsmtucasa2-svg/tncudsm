@@ -9,6 +9,7 @@ import {
 import { useAuth } from '../context/AuthContext.jsx';
 import { NAV } from '../data/navigation.js';
 import { socials } from '../data/site.js';
+import './MobileSidebar.css';
 
 // Items come from data/navigation.js. To give a new page an icon, add it to ICONS.
 const ICONS = {

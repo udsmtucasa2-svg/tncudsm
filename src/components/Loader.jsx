@@ -1,3 +1,4 @@
+import './Loader.css';
 export default function Loader({ fullscreen }) {
   const spinner = (
     <div className="ld-wrap" role="status" aria-label="Loading">

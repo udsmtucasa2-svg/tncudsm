@@ -1,0 +1,13 @@
+/* ======================================================================
+   Styles for Resources only. Keep rules for this component in this file.
+   ====================================================================== */
+.card--resource h3 { margin: 12px 0 6px; }
+.card--resource p { margin-bottom: 16px; }
+.card--resource { display: flex; flex-direction: column; gap: 4px; }
+.card--resource .card__more { margin-top: auto; padding-top: 14px; }
+
+@media (max-width: 560px) {
+  .card--resource { gap: 2px; }
+  .card--resource h3 { margin: 8px 0 2px; }
+  .card--resource .card__more { padding-top: 8px; }
+}

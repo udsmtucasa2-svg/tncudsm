@@ -4,6 +4,7 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import RequestForm from '../components/RequestForm.jsx';
 import { SocialLinks } from '../components/home/ContactSocial.jsx';
 import { contact } from '../data/site.js';
+import './Contact.css';
 
 const fields = [
   { name: 'name', label: 'Your name', required: true },

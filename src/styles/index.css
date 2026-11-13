@@ -1,0 +1,8 @@
+/* Shared styles, loaded once from main.jsx. Order matters: tokens first, then base, then the shared primitives.
+   Each component and page has its own .css file next to it (imported by that component). */
+@import './tokens.css';
+@import './base.css';
+@import './button.css';
+@import './card.css';
+@import './tabs.css';
+@import './forms.css';

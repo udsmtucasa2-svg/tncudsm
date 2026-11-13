@@ -1,0 +1,31 @@
+/* ======================================================================
+   Worship times strip (Sabbath School, Divine Service, Daily Prayers).
+   ====================================================================== */
+.card--small { background: var(--grad-gold-soft); padding: 20px 22px; border-color: color-mix(in srgb, var(--gold) 40%, #fff); }
+.card--service { padding: 22px 24px; box-shadow: var(--shadow); }
+.card--service h3 { margin: 10px 0 8px; font-size: 1.2rem; font-weight: 600; }
+.card--service p { display: flex; align-items: center; gap: 8px; margin: 0 0 4px; font-size: 14.5px; }
+.card--service p:first-of-type { font: 600 1.05rem var(--font); color: var(--teal); }
+.card--service svg { width: 17px; height: 17px; color: var(--teal); }
+a.card--small:hover { border-color: var(--teal); }
+.worship { margin-top: -56px; position: relative; z-index: 5; }
+.worship__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 18px; }
+@media (max-width: 720px) {
+  .worship { margin-top: -40px; }
+}
+.card--service { display: grid; align-content: start; gap: 4px; text-align: left; border-top: 4px solid var(--teal); }
+.card--service .badge { justify-self: start; margin-bottom: 6px; }
+.card--service h3 { margin: 0 0 8px; }
+
+/* Phones: three slim cards. Day pill and name on one line, time and place underneath. */
+@media (max-width: 560px) {
+  .worship { margin-top: -26px; }
+  .worship__grid { grid-template-columns: 1fr; gap: 10px; }
+  .card--small.card--service { grid-template-columns: 1fr auto; grid-template-areas: "name day" "time time" "place place"; align-items: center; row-gap: 3px; padding: 12px 14px; border-top-width: 3px; box-shadow: 0 4px 14px color-mix(in srgb, var(--navy) 10%, transparent); }
+  .card--service h3 { grid-area: name; margin: 0; font-size: 1rem; font-weight: 600; }
+  .card--service .badge { grid-area: day; margin: 0; padding: 2px 10px; font-size: 11.5px; }
+  .card--service p { font-size: 13px; margin: 0; gap: 7px; }
+  .card--service p:first-of-type { grid-area: time; font: 600 13.5px var(--font); }
+  .card--service p:last-of-type { grid-area: place; }
+  .card--service svg { width: 15px; height: 15px; }
+}

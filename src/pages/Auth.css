@@ -1,0 +1,39 @@
+/* ======================================================================
+   Styles for Auth only. Keep rules for this component in this file.
+   ====================================================================== */
+.gap-top { margin-top: 12px; }
+.auth { min-height: calc(100vh - var(--nav-h)); display: grid; place-items: center; padding: 40px 0; background: var(--gray-soft); }
+.auth__box { width: min(440px, 92%); background: var(--white); padding: 38px; border-radius: 18px; box-shadow: var(--shadow); }
+.auth__logos { display: flex; justify-content: center; margin-bottom: 16px; }
+.auth__box h1 { text-align: center; font-size: 1.6rem; margin-bottom: 6px; }
+.auth__sub { text-align: center; color: var(--text); margin-bottom: 22px; font-size: 15px; }
+.auth__alt { text-align: center; font-size: 14px; margin: 18px 0 0; }
+.auth__alt a { color: var(--teal); font-weight: 600; }
+@media (max-width: 540px) {
+  .auth__box { padding: 28px 22px; }
+}
+.auth__box--wide { width: min(640px, 94%); }
+.role-tabs { display: flex; gap: 8px; margin: 0 0 22px; }
+.role-tabs .tab { flex: 1 1 0; padding: 10px 8px; text-align: center; }
+.pw { position: relative; display: block; }
+.pw input { padding-right: 46px; }
+.pw__toggle {
+  position: absolute;
+  right: 4px;
+  bottom: 0;
+  width: 42px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--teal);
+  cursor: pointer;
+}
+.pw__toggle svg { width: 19px; height: 19px; }
+
+@media (max-width: 560px) {
+  .auth { padding: 20px 0; }
+  .auth__box h1 { font-size: 1.35rem; font-weight: 600; }
+  .auth__sub { font-size: 13.5px; margin-bottom: 16px; }
+}

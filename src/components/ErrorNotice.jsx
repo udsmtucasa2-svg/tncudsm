@@ -1,4 +1,5 @@
 import Button from './Button.jsx';
+import './ErrorNotice.css';
 
 // Inline message for a failed data request, with a retry button.
 export default function ErrorNotice({ onRetry, children = 'We could not load this content right now.' }) {

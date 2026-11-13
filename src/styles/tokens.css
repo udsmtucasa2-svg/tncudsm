@@ -1,0 +1,25 @@
+/* ======================================================================
+   Design tokens: brand palette (from the brand sheet), spacing, radius, shadow, fonts. Change colours HERE only.
+   ====================================================================== */
+:root {
+  --teal: #2E7A8F;
+  --navy: #142B50;
+  --gold: #D6A63C;
+  --white: #FFFFFF;
+  --gray: #DDE2E8;
+  --gray-soft: color-mix(in srgb, var(--gray) 35%, #fff);
+  --text: color-mix(in srgb, var(--navy) 82%, #fff);
+  --grad-hero: linear-gradient(135deg, var(--teal) 0%, color-mix(in srgb, var(--teal) 72%, var(--navy)) 100%);
+  --tint: color-mix(in srgb, var(--teal) 11%, #fff);
+  --grad-gold-soft: linear-gradient(135deg, color-mix(in srgb, var(--gold) 36%, #fff) 0%, #fff 100%);
+  --grad-navy: linear-gradient(135deg, var(--navy) 0%, color-mix(in srgb, var(--navy) 78%, var(--teal)) 100%); /* dark bands: gold and white read well on navy */
+  --on-dark: color-mix(in srgb, var(--white) 90%, var(--navy)); /* secondary text on teal / navy (AA contrast) */
+  --radius: 14px;
+  --shadow: 0 8px 28px color-mix(in srgb, var(--navy) 12%, transparent);
+  --font: 'Outfit', 'Inter', system-ui, sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --nav-h: 76px;
+}
+@media (max-width: 560px) {
+  :root { --nav-h: 68px; }
+}

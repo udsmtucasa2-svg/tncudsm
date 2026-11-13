@@ -1,0 +1,15 @@
+/* ======================================================================
+   Styles for QuickActions only. Keep rules for this component in this file.
+   ====================================================================== */
+.qa { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px; }
+.qa > * { display: flex; }
+.qa__card { display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
+.qa__card h3 { margin: 0 0 6px; }
+.qa__card p { margin: 0 0 16px; }
+.qa__card .card__more { margin-top: auto; }
+
+@media (max-width: 560px) {
+  .qa { gap: 10px; }
+  .qa__card h3 { margin: 0; }
+  .qa__card p { margin: 0; }
+}

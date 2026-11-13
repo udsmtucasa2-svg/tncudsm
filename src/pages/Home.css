@@ -1,0 +1,38 @@
+/* ======================================================================
+   Styles for Home only. Keep rules for this component in this file.
+   ====================================================================== */
+.mcard { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; }
+.mcard .icon-tile { margin-bottom: 18px; }
+.mcard h3 { margin: 0 0 6px; font-size: 1.2rem; }
+.mcard p { margin: 0 0 18px; }
+.mcard .card__more { margin-top: auto; }
+.notice-card { display: grid; gap: 6px; align-content: start; height: auto; border-left: 4px solid var(--teal); }
+.notice-card h3 { margin: 4px 0 2px; font-size: 1.05rem; }
+.notice-card p { margin: 0; }
+.join { --wave-fill: var(--navy); background: var(--grad-navy); color: var(--white); padding: 64px 0; }
+.join__inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.join h2 { color: var(--white); font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 8px; }
+.join p { margin: 0; color: var(--on-dark); max-width: 560px; }
+.join__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .join__actions { width: 100%; }
+}
+.home-notices { margin-top: 72px; }
+
+/* Phones: join band, ministry tiles and notices stay small and readable */
+@media (max-width: 560px) {
+  .mcard { padding: 14px; }
+  .mcard h3 { margin: 0; font-size: 1rem; }
+  .mcard p { margin: 0; }
+  .notice-card { padding: 14px; gap: 4px; }
+  .notice-card h3 { font-size: 1rem; }
+  .home-notices { margin-top: 36px; }
+  .section-link { margin-top: 22px; }
+
+  .join { padding: 30px 0; }
+  .join__inner { gap: 14px; }
+  .join h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 4px; }
+  .join p { font-size: 13.5px; line-height: 1.5; }
+  .join__actions { gap: 10px; }
+  .join__actions .btn { flex: 1 1 0; min-width: 0; padding: 10px 12px; font-size: 12.5px; }
+}

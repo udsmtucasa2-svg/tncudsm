@@ -1,0 +1,70 @@
+/* ======================================================================
+   Styles for BlobCard / BlobGrid only. Used on Home (AboutTabs) and the About page.
+   Look: a thin grey organic ring, a big picture filling the blob, centred title and text.
+   ====================================================================== */
+.blob-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 36px; }
+
+.blob-card { --c: var(--teal); --blob: 164px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.blob-card--gold { --c: var(--gold); }
+.blob-card--navy { --c: var(--navy); }
+
+/* Grey ring (outer) + inner shape. Both morph slowly on hover. */
+.blob { position: relative; display: block; width: var(--blob); height: var(--blob); margin-bottom: 20px; flex-shrink: 0; }
+.blob::before {
+  content: ''; position: absolute; inset: 0; background: var(--gray);
+  border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+  transition: border-radius .8s var(--ease), transform .8s var(--ease);
+}
+.blob__in {
+  position: absolute; inset: 6% 9% 8% 7%; display: grid; place-items: center; overflow: hidden;
+  background: color-mix(in srgb, var(--c) 16%, #fff);
+  color: var(--c);
+  border-radius: 46% 54% 42% 58% / 56% 44% 56% 44%;
+  transition: border-radius .8s var(--ease), background .4s var(--ease), color .4s var(--ease);
+}
+.blob-card--gold .blob__in { color: color-mix(in srgb, var(--gold) 70%, var(--navy)); }
+.blob__in svg { width: 36%; height: 36%; }
+
+/* Real picture fills the whole inner shape */
+.blob__in--img { background: var(--gray); }
+.blob__in--img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s var(--ease); }
+
+.blob__badge {
+  position: absolute; right: 0; bottom: 4%; min-width: 34px; height: 34px; padding: 0 8px;
+  display: grid; place-items: center; border-radius: 999px;
+  background: var(--gold); color: var(--navy); border: 3px solid var(--white);
+  font: 700 13px var(--font);
+}
+.section--soft .blob__badge { border-color: var(--gray-soft); }
+
+.blob-card:hover .blob::before { border-radius: 44% 56% 48% 52% / 56% 44% 58% 42%; transform: rotate(-6deg); }
+.blob-card:hover .blob__in { border-radius: 56% 44% 58% 42% / 44% 56% 44% 56%; }
+.blob-card:hover .blob__in:not(.blob__in--img) { background: var(--c); color: var(--white); }
+.blob-card--gold:hover .blob__in:not(.blob__in--img) { color: var(--navy); }
+.blob-card:hover .blob__in--img img { transform: scale(1.08); }
+
+.blob-card__body { max-width: 300px; }
+.blob-card h3 { margin: 0 0 8px; font: 600 1.12rem var(--font); color: var(--navy); }
+.blob-card p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--text); }
+
+/* Tablet: two across */
+@media (max-width: 900px) {
+  .blob-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 24px; }
+  .blob-card { --blob: 150px; }
+}
+
+/* Phones: one column, blob on the left and text on the right so long lists stay short */
+@media (max-width: 560px) {
+  .blob-grid { grid-template-columns: 1fr; gap: 22px; }
+  .blob-card { --blob: 96px; flex-direction: row; align-items: center; text-align: left; gap: 16px; }
+  .blob { margin-bottom: 0; }
+  .blob__badge { min-width: 26px; height: 26px; font-size: 11.5px; border-width: 2px; }
+  .blob-card__body { max-width: none; }
+  .blob-card h3 { font-size: 1rem; margin-bottom: 4px; }
+  .blob-card p { font-size: 13.5px; line-height: 1.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob::before, .blob__in, .blob__in--img img { transition: none; }
+  .blob-card:hover .blob::before, .blob-card:hover .blob__in--img img { transform: none; }
+}

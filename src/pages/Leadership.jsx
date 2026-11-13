@@ -9,6 +9,7 @@ import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { sections } from '../data/leadershipStructure.js';
 import { byOrder } from '../lib/arrange.js';
+import './Leadership.css';
 
 export default function Leadership() {
   const [params, setParams] = useSearchParams();

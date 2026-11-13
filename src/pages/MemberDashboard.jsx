@@ -10,6 +10,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { catLabel, completeness, currentYearOfStudy, isStudent, ordinal } from '../lib/members.js';
+import './MemberDashboard.css';
 
 const Row = ({ label, children }) => <div><dt>{label}</dt><dd>{children || <span className="muted">Not added</span>}</dd></div>;
 

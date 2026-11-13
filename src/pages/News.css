@@ -1,0 +1,13 @@
+/* ======================================================================
+   Styles for News only. Keep rules for this component in this file.
+   ====================================================================== */
+.news { display: grid; gap: 18px; }
+.news__item { display: grid; gap: 8px; height: auto; border-left: 4px solid var(--teal); }
+.news__item h3 { margin: 4px 0 0; }
+.news__item p { margin: 0; }
+
+@media (max-width: 560px) {
+  .news { gap: 10px; }
+  .news__item { padding: 14px; gap: 4px; }
+  .news__item h3 { font-size: 1rem; }
+}

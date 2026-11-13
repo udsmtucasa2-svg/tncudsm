@@ -7,6 +7,7 @@ import Reveal from '../components/Reveal.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { newestFirst, fmtDate } from '../lib/arrange.js';
+import './News.css';
 
 export default function News() {
   const { data, loading, error, reload } = useFetch(api.getAnnouncements);

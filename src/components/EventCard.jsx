@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LuCalendarDays, LuClock, LuMapPin, LuLandmark, LuArrowRight } from 'react-icons/lu';
 import { fmtDate } from '../lib/arrange.js';
+import './EventCard.css';
 
 // Shared by the Events page and anywhere else events are listed.
 // Details are in an aligned label/value list (Time, Date, Department, Location).

@@ -3,6 +3,7 @@ import SectionHeading from '../SectionHeading.jsx';
 import Reveal from '../Reveal.jsx';
 import Button from '../Button.jsx';
 import { contact, socials } from '../../data/site.js';
+import './ContactSocial.css';
 
 export function SocialLinks({ className = '' }) {
   return (
@@ -16,7 +17,7 @@ export function SocialLinks({ className = '' }) {
 
 export default function ContactSocial() {
   return (
-    <section className="section section--dark">
+    <section className="section section--dark contact-band wave-top">
       <div className="container">
         <SectionHeading eyebrow="Get in touch" title="Come and be part of the family" />
         <Reveal className="contact">

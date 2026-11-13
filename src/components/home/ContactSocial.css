@@ -1,0 +1,43 @@
+/* ======================================================================
+   Styles for ContactSocial only. Keep rules for this component in this file.
+   ====================================================================== */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 18px; max-width: 920px; margin-inline: auto; }
+.contact__item {
+  background: color-mix(in srgb, var(--white) 10%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--gold) 80%, transparent);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  justify-items: start;
+}
+.contact__item > svg { width: 24px; height: 24px; color: var(--white); }
+.contact__item b { color: var(--white); font: 600 12.5px var(--font); letter-spacing: .1em; text-transform: uppercase; }
+.contact__item a:hover { color: var(--gold); }
+.socials { display: flex; gap: 10px; margin-top: 8px; }
+.socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--white) 16%, transparent);
+  color: var(--white);
+  transition: background .25s, color .25s, transform .3s var(--ease);
+}
+.socials a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+.socials svg { width: 17px; height: 17px; }
+
+@media (max-width: 560px) {
+  .contact { gap: 10px; }
+  .contact__item { grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px; align-items: center; padding: 12px 14px; font-size: 14px; }
+  .contact__item > svg { grid-row: 1 / span 2; width: 22px; height: 22px; }
+  .contact__item > :not(svg) { grid-column: 2; overflow-wrap: anywhere; }
+  .socials { margin-top: 4px; gap: 8px; }
+  .socials a { width: 36px; height: 36px; }
+}
+
+/* Teal band between the navy join band and the navy footer (keeps the alternating rhythm) */
+.contact-band { --wave-fill: var(--teal); background: var(--grad-hero); }
+.contact-band .heading__eyebrow { color: var(--white); }

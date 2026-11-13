@@ -1,0 +1,32 @@
+/* ======================================================================
+   Styles for Gallery only. Keep rules for this component in this file.
+   ====================================================================== */
+.gallery { columns: 3 240px; column-gap: 18px; }
+.gallery__item {
+  break-inside: avoid;
+  margin: 0 0 18px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: var(--gray-soft);
+  transition: transform .3s var(--ease);
+}
+.gallery__item:hover { transform: scale(1.02); }
+.gallery__item img { width: 100%; }
+.gallery__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px 14px 12px;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 14px;
+  background: linear-gradient(transparent, color-mix(in srgb, var(--navy) 88%, transparent));
+}
+
+@media (max-width: 560px) {
+  .gallery { columns: 2 140px; column-gap: 10px; }
+  .gallery__item { margin-bottom: 10px; border-radius: 10px; }
+  .gallery__cap { padding: 22px 10px 8px; font-size: 12.5px; }
+}

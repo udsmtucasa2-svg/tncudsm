@@ -4,6 +4,7 @@ import { LuChevronDown, LuMenu, LuUser, LuLayoutDashboard } from 'react-icons/lu
 import { useAuth } from '../context/AuthContext.jsx';
 import { NAV } from '../data/navigation.js';
 import MobileSidebar from './MobileSidebar.jsx';
+import './Navbar.css';
 
 // Both logos are always rendered (never hidden by breakpoint) so the brand is visible on every screen.
 // No card sits behind them. The SDA logo is drawn as a one-colour overlay: teal on light

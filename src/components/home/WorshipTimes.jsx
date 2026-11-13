@@ -4,6 +4,7 @@ import Loader from '../Loader.jsx';
 import ErrorNotice from '../ErrorNotice.jsx';
 import { api } from '../../services/api.js';
 import { useFetch } from '../../hooks.js';
+import './WorshipTimes.css';
 
 export default function WorshipTimes() {
   const { data, loading, error, reload } = useFetch(api.getServices);

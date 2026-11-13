@@ -3,9 +3,10 @@ import { LuBookOpen, LuHeartHandshake, LuCalendarDays, LuLogIn, LuUser, LuArrowR
 import SectionHeading from '../SectionHeading.jsx';
 import Reveal from '../Reveal.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
+import './QuickActions.css';
 
 // The four most useful next steps for a visitor, as large cards.
-export default function QuickActions() {
+export default function QuickActions({ tone = 'section--soft' }) {
   const { user, isAdmin } = useAuth();
   const actions = [
     { to: '/bible-study', Icon: LuBookOpen, title: 'Request a Bible Study', text: 'Learn the Bible with a friendly study guide.', fx: 'fx-skew fx-teal' },
@@ -16,13 +17,13 @@ export default function QuickActions() {
       : { to: '/login', Icon: LuLogIn, title: 'Member Login', text: 'Sign in to see your profile and family.', fx: 'fx-split fx-navy' },
   ];
   return (
-    <section className="section section--soft">
+    <section className={`section ${tone}`}>
       <div className="container">
         <SectionHeading eyebrow="Get involved" title="How can we help you today?" />
         <div className="qa">
           {actions.map(({ to, Icon, title, text, fx }, i) => (
             <Reveal key={title} delay={i * 70}>
-              <Link to={to} className={`card qa__card fx ${fx}`}>
+              <Link to={to} className={`card card--tile qa__card fx ${fx}`}>
                 <span className="icon-tile"><Icon aria-hidden="true" /></span>
                 <h3>{title}</h3>
                 <p>{text}</p>

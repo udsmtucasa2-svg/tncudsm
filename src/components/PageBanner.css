@@ -1,0 +1,14 @@
+/* ======================================================================
+   Styles for PageBanner only. Keep rules for this component in this file.
+   ====================================================================== */
+.page-banner { background: var(--grad-hero); color: var(--white); padding: 60px 0; text-align: center; }
+.page-banner h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); margin: 0 0 8px; }
+.page-banner p { margin: 0; color: var(--white); }
+@media (max-width: 540px) {
+  .page-banner { padding: 44px 0; }
+}
+
+@media (max-width: 560px) {
+  .page-banner h1 { font-size: 1.55rem; font-weight: 600; }
+  .page-banner p { font-size: .95rem; line-height: 1.5; }
+}

@@ -1,0 +1,129 @@
+/* ======================================================================
+   Top navigation bar and brand logos.
+   ====================================================================== */
+.logos { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logos img { display: block; width: auto; background: none; border: 0; border-radius: 0; box-shadow: none; }
+.logo-sda {
+  display: block;
+  aspect-ratio: 1 / 1;
+  background-color: var(--teal);
+  -webkit-mask: url('/images/sda-logo.png') center / contain no-repeat;
+  mask: url('/images/sda-logo.png') center / contain no-repeat;
+}
+.logos--white .logo-sda { background-color: none; }
+.logos--md img, .logos--md .logo-sda { height: 46px; }
+.logos--lg img, .logos--lg .logo-sda { height: 56px; }
+.nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--gray); box-shadow: 0 2px 12px color-mix(in srgb, var(--navy) 6%, transparent); }
+.nav__inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.nav__brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; font-family: var(--font); font-weight: 700; line-height: 1.1; }
+.nav__name { display: block; font-size: 18px; }
+.nav__name small { display: block; margin-top: 2px; font-weight: 500; font-size: 11px; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; }
+.nav__links { display: flex; align-items: center; gap: 2px; }
+.nav__item { position: relative; }
+.nav__link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  font-weight: 500;
+  font-size: 14.5px;
+  border-radius: 8px;
+  transition: color .2s, background .2s;
+  cursor: pointer;
+}
+.nav__link:hover, .nav__link.active { color: var(--teal); background: var(--gray-soft); }
+.nav__chev { width: 15px; height: 15px; transition: transform .25s var(--ease); }
+.nav__item:hover .nav__chev, .nav__item:focus-within .nav__chev { transform: rotate(180deg); }
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: all .25s var(--ease);
+}
+.nav__item:hover .nav__dropdown, .nav__item:focus-within .nav__dropdown { opacity: 1; visibility: visible; transform: none; }
+.nav__dropdown a { display: block; padding: 9px 12px; border-radius: 8px; font-size: 14px; }
+.nav__dropdown a:hover { background: var(--gray-soft); color: var(--teal); }
+.nav__right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav__user {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+  transition: background .25s;
+}
+.nav__user:hover { background: var(--teal); }
+.nav__user svg { width: 20px; height: 20px; }
+.nav__initial { font: 700 16px var(--font); }
+.nav__admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: var(--gray-soft);
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 600;
+}
+.nav__admin:hover { background: var(--gray); }
+.nav__admin svg { width: 17px; height: 17px; }
+.nav__toggle { display: none; place-items: center; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; color: var(--navy); }
+.nav__toggle svg { width: 26px; height: 26px; }
+@media (max-width: 1020px) {
+  .nav__toggle { display: grid; }
+  .nav__links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    background: var(--white);
+    padding: 16px 4%;
+    overflow-y: auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform .35s var(--ease), visibility .35s;
+  }
+  .nav__links.open { transform: none; visibility: visible; }
+  .nav__link { padding: 14px 12px; font-size: 16px; }
+  .nav__chev { display: none; }
+  .nav__dropdown { position: static; opacity: 1; visibility: visible; transform: none; border: 0; box-shadow: none; padding: 0 0 0 12px; }
+  .nav__dropdown a { padding: 12px 20px; font-size: 15px; }
+}
+@media (max-width: 560px) {
+  .nav__inner { gap: 10px; }
+  .nav__name { display: none; }
+  .logos--md img, .logos--md .logo-sda { height: 40px; }
+  .nav__admin span { display: none; }
+  .nav__admin { padding: 10px; }
+}
+.nav__cta { padding: 10px 18px; font-size: 14px; }
+.nav__mobile-extra { display: none; }
+.nav__dropdown a.active { color: var(--teal); background: var(--gray-soft); font-weight: 600; }
+.nav__dropdown { min-width: 230px; }
+.nav__link[role='button'] { user-select: none; }
+@media (max-width: 1020px) {
+  .nav__mobile-extra { display: grid; gap: 10px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--gray); }
+  .nav__cta { display: none; }
+}
+.nav__links { gap: 4px; }
+.nav__item:last-of-type .nav__dropdown { left: auto; right: 0; }
+.nav__dropdown { min-width: 250px; }
+@media (max-width: 1020px) {
+  .nav__item:last-of-type .nav__dropdown { right: auto; }
+}

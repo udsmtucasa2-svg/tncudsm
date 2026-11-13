@@ -1,3 +1,4 @@
+import './SectionHeading.css';
 export default function SectionHeading({ eyebrow, title }) {
   return (
     <div className="heading">

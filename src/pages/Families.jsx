@@ -9,6 +9,7 @@ import Button from '../components/Button.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
+import './Families.css';
 
 export default function Families() {
   const { user } = useAuth();

@@ -7,6 +7,7 @@ import { Icon } from '../lib/icons.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
 import { byOrder } from '../lib/arrange.js';
+import './Departments.css';
 
 // Heads of a ministry, in official order. Names come from the admin-entered leaders list.
 export const headsOf = (leaders, slug) => (leaders ?? []).filter((l) => l.section === slug && l.level === 'head' && l.name).sort(byOrder);

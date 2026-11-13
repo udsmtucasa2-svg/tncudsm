@@ -1,0 +1,17 @@
+/* ======================================================================
+   Styles for SermonCard only. Keep rules for this component in this file.
+   ====================================================================== */
+.sermon-media { height: 150px; }
+.sermon-media .play {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--navy) 35%, transparent);
+  transition: transform .35s var(--ease);
+}
+.sermon-media .play svg { width: 26px; height: 26px; margin-left: 3px; }
+a.ecard:hover .play { transform: scale(1.1); }
