@@ -4,7 +4,7 @@ import PageBanner from '../components/PageBanner.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import Reveal from '../components/Reveal.jsx';
 import Button from '../components/Button.jsx';
-import BlobCard, { BlobGrid } from '../components/BlobCard.jsx';
+import BlobCard, { BlobGrid } from '../components/Blobcard.jsx';
 import { beliefImageCandidates } from '../data/beliefImages.js';
 import { about } from '../data/site.js';
 import { beliefGroups } from '../data/beliefs.js';

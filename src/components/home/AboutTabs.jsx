@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../Button.jsx';
 import SectionHeading from '../SectionHeading.jsx';
 import Reveal from '../Reveal.jsx';
-import BlobCard, { BlobGrid } from '../BlobCard.jsx';
+import BlobCard, { BlobGrid } from '../Blobcard.jsx';
 import { Icon } from '../../lib/icons.jsx';
 import { about } from '../../data/site.js';
 import { beliefGroups } from '../../data/beliefs.js';

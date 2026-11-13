@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '../lib/icons.jsx';
-import './BlobCard.css';
+import './Blobcard.css';
 
 // Shared "blob" card: an organic grey ring with a picture (or icon) inside, then a title and a short text.
 // image: one URL, or a list of URLs to try in order. If none loads, the icon is shown instead.
