@@ -94,3 +94,15 @@ export function imageToDataUrl(file, maxW = 1400, quality = 0.82) {
     reader.readAsDataURL(file);
   });
 }
+
+// Reads a small file (a PDF) as a data URL so it fits in localStorage during local preview.
+// With a backend connected, files are uploaded instead and this is not used.
+export function fileToDataUrl(file, maxBytes = 2.5 * 1024 * 1024) {
+  return new Promise((resolve, reject) => {
+    if (file.size > maxBytes) { reject(new Error('This file is too big for local preview (max 2.5 MB). It will work with the backend connected.')); return; }
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Could not read the file'));
+    reader.onload = () => resolve(reader.result);
+    reader.readAsDataURL(file);
+  });
+}

@@ -3,9 +3,14 @@
 import { LuUsers, LuUsersRound, LuHouse, LuCalendarDays, LuMic, LuMegaphone, LuLibrary, LuImage, LuClock, LuHeartHandshake, LuTrophy, LuInbox } from 'react-icons/lu';
 import { sections } from '../data/leadershipStructure.js';
 import { iconOptions } from '../lib/icons.jsx';
+import { parseVideo } from '../lib/video.js';
+import { todayISO } from '../lib/arrange.js';
 
 const sectionOptions = sections.map((s) => [s.key, s.label]);
 export const sectionLabel = (key) => sections.find((s) => s.key === key)?.label || key;
+
+// Status shown in the list for content that can be hidden or can expire.
+const liveStatus = (r) => (r.published === false ? 'Hidden' : r.expires && String(r.expires) < todayISO() ? 'Expired' : 'Published');
 
 export const REQUEST_TYPES = { 'bible-study': 'Bible study', prayer: 'Prayer request', message: 'Message' };
 
@@ -16,6 +21,7 @@ export const RESOURCES = {
   leaders: {
     label: 'Leaders', singular: 'Leader', icon: LuUsers,
     description: 'Names, photos and contacts shown on the Leadership and Ministries pages.',
+    exportable: true,
     canCreate: true, canDelete: true, sort: (a, b) => (a.order ?? 0) - (b.order ?? 0),
     filter: { field: 'section', label: 'All sections', options: sectionOptions },
     title: (r) => r.name || 'Not yet entered', subtitle: (r) => r.position, imageKey: 'photo',
@@ -43,9 +49,11 @@ export const RESOURCES = {
     description: 'Concerts, programmes and special services. Past events move to "Past events" automatically.',
     canCreate: true, canDelete: true, sort: (a, b) => String(b.date).localeCompare(String(a.date)),
     title: (r) => r.title, subtitle: (r) => r.location, imageKey: 'image',
+    exportable: true,
     columns: [
       { label: 'Date', render: (r) => r.date },
       { label: 'Time', render: (r) => r.time },
+      { label: 'Status', status: liveStatus },
     ],
     fields: [
       { name: 'title', label: 'Event title', type: 'text', required: true, wide: true },
@@ -55,39 +63,46 @@ export const RESOURCES = {
       { name: 'location', label: 'Location', type: 'text', required: true },
       { name: 'description', label: 'Description', type: 'textarea', wide: true },
       { name: 'image', label: 'Poster or photo', type: 'image', wide: true },
+      { name: 'published', label: 'Show on the website', type: 'checkbox', wide: true },
     ],
-    blank: { title: '', date: '', time: '', department: '', location: '', description: '', image: null },
+    blank: { title: '', date: '', time: '', department: '', location: '', description: '', image: null, published: true },
   },
   sermons: {
     label: 'Sermons', singular: 'Sermon', icon: LuMic,
     description: 'Messages people can listen to or watch.',
     canCreate: true, canDelete: true, sort: (a, b) => String(b.date).localeCompare(String(a.date)),
-    title: (r) => r.title, subtitle: (r) => r.speaker,
+    title: (r) => r.title, subtitle: (r) => r.speaker, thumb: (r) => r.thumbnail || parseVideo(r.url)?.thumb || null,
+    exportable: true,
     columns: [
       { label: 'Series', render: (r) => r.series || '-' },
       { label: 'Date', render: (r) => r.date },
+      { label: 'Status', status: liveStatus },
     ],
     fields: [
       { name: 'title', label: 'Sermon title', type: 'text', required: true, wide: true },
       { name: 'speaker', label: 'Speaker', type: 'text', required: true },
       { name: 'date', label: 'Date', type: 'date', required: true },
       { name: 'series', label: 'Series', type: 'text' },
-      { name: 'url', label: 'Link (YouTube, audio, etc.)', type: 'url', required: true, wide: true },
+      { name: 'url', label: 'Link (YouTube, audio, etc.)', type: 'url', required: true, wide: true, preview: 'video', hint: 'Paste a YouTube or Vimeo link. The picture and the player are automatic. Other links open in a new tab.' },
+      { name: 'thumbnail', label: 'Thumbnail picture (optional)', type: 'image', wide: true, hint: 'Only needed for links with no automatic picture (Facebook, TikTok, audio). It also overrides the automatic one.' },
+      { name: 'published', label: 'Show on the website', type: 'checkbox', wide: true },
     ],
-    blank: { title: '', speaker: '', date: '', series: '', url: '' },
+    blank: { title: '', speaker: '', date: '', series: '', url: '', thumbnail: null, published: true },
   },
   announcements: {
     label: 'Announcements', singular: 'Announcement', icon: LuMegaphone,
-    description: 'Short notices shown on the home page notice board.',
+    description: 'Upload each announcement as a PDF. It appears as a card with its date in News & Announcements on the home page.',
     canCreate: true, canDelete: true, sort: (a, b) => String(b.date).localeCompare(String(a.date)),
-    title: (r) => r.title, subtitle: (r) => r.text,
-    columns: [{ label: 'Date', render: (r) => r.date }],
+    title: (r) => r.title, subtitle: (r) => (r.pdf ? 'PDF attached' : r.text),
+    columns: [{ label: 'Date', render: (r) => r.date }, { label: 'Status', status: liveStatus }],
     fields: [
-      { name: 'title', label: 'Headline', type: 'text', required: true, wide: true },
-      { name: 'date', label: 'Date', type: 'date', required: true },
-      { name: 'text', label: 'Message', type: 'textarea', required: true, wide: true },
+      { name: 'title', label: 'Headline', type: 'text', required: true, wide: true, hint: 'For your own reference. The card shows the date.' },
+      { name: 'date', label: 'Date', type: 'date', required: true, hint: 'This date is shown on the card.' },
+      { name: 'expires', label: 'Hide after (optional)', type: 'date', hint: 'The card disappears from the website after this date.' },
+      { name: 'pdf', label: 'Announcement PDF', type: 'pdf', required: true, wide: true },
+      { name: 'published', label: 'Show on the website', type: 'checkbox', wide: true },
     ],
-    blank: { title: '', date: '', text: '' },
+    blank: { title: '', date: '', expires: '', pdf: null, published: true },
   },
   resources: {
     label: 'Resources', singular: 'Resource', icon: LuLibrary,
@@ -146,6 +161,8 @@ export const RESOURCES = {
   requests: {
     label: 'Requests & messages', singular: 'Request', icon: LuInbox,
     description: 'Bible study requests, prayer requests and messages sent from the website. Only administrators can see these. Mark each one as you follow it up.',
+    exportable: true,
+    filter: { field: 'status', label: 'All statuses', options: [['New', 'New'], ['In progress', 'In progress'], ['Done', 'Done']] },
     canCreate: false, canDelete: true, sort: (a, b) => String(b.createdAt).localeCompare(String(a.createdAt)),
     title: (r) => r.name || 'Anonymous', subtitle: (r) => (r.message || '').slice(0, 80),
     columns: [

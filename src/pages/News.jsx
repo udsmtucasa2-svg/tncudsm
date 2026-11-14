@@ -4,9 +4,10 @@ import Loader from '../components/Loader.jsx';
 import ErrorNotice from '../components/ErrorNotice.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import Reveal from '../components/Reveal.jsx';
+import AnnouncementCard from '../components/AnnouncementCard.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
-import { newestFirst, fmtDate } from '../lib/arrange.js';
+import { newestFirst } from '../lib/arrange.js';
 import './News.css';
 
 export default function News() {
@@ -16,18 +17,14 @@ export default function News() {
     <>
       <PageBanner title="News & Announcements" subtitle="What is happening in our fellowship" />
       <section className="section">
-        <div className="container container--text">
+        <div className="container">
           {loading ? <Loader /> : error ? <ErrorNotice onRetry={reload} /> : list.length === 0 ? (
             <EmptyState icon={LuNewspaper} title="No announcements yet">News and notices will be posted here.</EmptyState>
           ) : (
-            <div className="news">
-              {list.map((a) => (
-                <Reveal key={a.id}>
-                  <article className="card news__item fx fx-side fx-tint">
-                    <span className="badge">{fmtDate(a.date)}</span>
-                    <h3>{a.title}</h3>
-                    <p>{a.text}</p>
-                  </article>
+            <div className="hrow hrow--notices hrow--wrap">
+              {list.map((a, i) => (
+                <Reveal key={a.id} delay={(i % 3) * 80} className="hrow__item">
+                  <AnnouncementCard a={a} />
                 </Reveal>
               ))}
             </div>

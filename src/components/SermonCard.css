@@ -1,17 +1,30 @@
 /* ======================================================================
-   Styles for SermonCard only. Keep rules for this component in this file.
+   Styles for VideoModal only. Keep rules for this component in this file.
    ====================================================================== */
-.sermon-media { height: 150px; }
-.sermon-media .play {
-  width: 62px;
-  height: 62px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--navy);
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--navy) 35%, transparent);
-  transition: transform .35s var(--ease);
+.vmodal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 16px; animation: vmodal-in .25s var(--ease) both; }
+@keyframes vmodal-in { from { opacity: 0; } to { opacity: 1; } }
+.vmodal__scrim { position: absolute; inset: 0; border: 0; padding: 0; background: color-mix(in srgb, var(--navy) 88%, #000); cursor: pointer; }
+.vmodal__box { position: relative; width: min(980px, 100%); background: var(--navy); border-radius: var(--radius); overflow: hidden; box-shadow: 0 24px 64px rgba(0, 0, 0, .5); }
+.vmodal__frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.vmodal__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vmodal__close {
+  position: absolute; z-index: 2; top: 10px; right: 10px;
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border: 0; border-radius: 50%; cursor: pointer;
+  background: var(--gold); color: var(--navy);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
 }
-.sermon-media .play svg { width: 26px; height: 26px; margin-left: 3px; }
-a.ecard:hover .play { transform: scale(1.1); }
+.vmodal__close svg { width: 20px; height: 20px; }
+.vmodal__bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 14px 18px; color: var(--white); }
+.vmodal__bar b { display: block; font: 600 1.05rem var(--font); line-height: 1.3; }
+.vmodal__bar small { display: block; color: var(--on-dark); font-size: 13.5px; }
+.vmodal__bar a { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font-weight: 600; font-size: 14px; }
+.vmodal__bar a svg { width: 16px; height: 16px; }
+.vmodal__bar a:hover { text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .vmodal { padding: 0; align-items: center; }
+  .vmodal__box { border-radius: 0; width: 100%; }
+  .vmodal__bar { padding: 12px 14px; }
+  .vmodal__bar b { font-size: 1rem; }
+}

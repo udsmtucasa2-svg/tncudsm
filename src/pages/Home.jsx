@@ -8,6 +8,7 @@ import Reveal from '../components/Reveal.jsx';
 import HeroSlider from '../components/HeroSlider.jsx';
 import EventCard from '../components/EventCard.jsx';
 import SermonCard from '../components/SermonCard.jsx';
+import AnnouncementCard from '../components/AnnouncementCard.jsx';
 import WorshipTimes from '../components/home/WorshipTimes.jsx';
 import AboutTabs from '../components/home/AboutTabs.jsx';
 import ContactSocial from '../components/home/ContactSocial.jsx';
@@ -16,11 +17,11 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { Icon } from '../lib/icons.jsx';
 import { api } from '../services/api.js';
 import { useFetch } from '../hooks.js';
-import { newestFirst, upcomingEvents, fmtDate } from '../lib/arrange.js';
+import { newestFirst, upcomingEvents } from '../lib/arrange.js';
 import './Home.css';
 
-// Home page order: hero, worship times, about, ministries, events, sermons and notices, join, contact.
-// Events, sermons and notices only appear when the admin has added them, so the page never shows filler.
+// Home page order: hero, worship times, news & announcements, upcoming events, latest sermons (up to 5 each, sliding sideways on phones), about, quick actions, ministries, join, contact.
+// Announcements, events and sermons only appear when the admin has added them, so the page never shows filler.
 export default function Home() {
   const { user } = useAuth();
   const ev = useFetch(api.getEvents);
@@ -28,9 +29,9 @@ export default function Home() {
   const an = useFetch(api.getAnnouncements);
   const dp = useFetch(api.getDepartments);
 
-  const upcoming = upcomingEvents(ev.data).slice(0, 3);
-  const sermons = newestFirst(se.data).slice(0, 3);
-  const notices = newestFirst(an.data).slice(0, 3);
+  const upcoming = upcomingEvents(ev.data).slice(0, 5);
+  const sermons = newestFirst(se.data).slice(0, 5);
+  const notices = newestFirst(an.data).slice(0, 5);
 
   // Sections alternate white / light-grey in the order they appear, so the page rhythm never breaks
   // even when events, sermons or notices are missing.
@@ -42,6 +43,36 @@ export default function Home() {
     <>
       <HeroSlider />
       <WorshipTimes />
+      {notices.length > 0 && (
+        <section className={`section ${tone()}`} id="announcements">
+          <div className="container">
+            <SectionHeading eyebrow="Notice board" title="News & Announcements" />
+            <div className="hrow hrow--notices">{notices.map((a, i) => <Reveal key={a.id} delay={i * 80} className="hrow__item"><AnnouncementCard a={a} /></Reveal>)}</div>
+            <div className="section-link"><Button to="/news" variant="outline" arrow>All announcements</Button></div>
+          </div>
+        </section>
+      )}
+
+      {upcoming.length > 0 && (
+        <section className={`section ${tone()}`}>
+          <div className="container">
+            <SectionHeading eyebrow="Mark your calendar" title="Upcoming Events" />
+            <div className="hrow">{upcoming.map((e, i) => <Reveal key={e.id} delay={i * 80} className="hrow__item"><EventCard e={e} compact /></Reveal>)}</div>
+            <div className="section-link"><Button to="/events" variant="outline" arrow>All events</Button></div>
+          </div>
+        </section>
+      )}
+
+      {sermons.length > 0 && (
+        <section className={`section ${tone()}`}>
+          <div className="container">
+            <SectionHeading eyebrow="Listen" title="Latest Sermons" />
+            <div className="hrow">{sermons.map((s, i) => <Reveal key={s.id} delay={i * 80} className="hrow__item"><SermonCard s={s} /></Reveal>)}</div>
+            <div className="section-link"><Button to="/sermons" variant="outline" arrow>All sermons</Button></div>
+          </div>
+        </section>
+      )}
+
       <AboutTabs tone={tone()} />
       <QuickActions tone={tone()} />
 
@@ -65,46 +96,6 @@ export default function Home() {
           <div className="section-link"><Button to="/departments" variant="outline" arrow>All ministries</Button></div>
         </div>
       </section>
-
-      {upcoming.length > 0 && (
-        <section className={`section ${tone()}`}>
-          <div className="container">
-            <SectionHeading eyebrow="Mark your calendar" title="Upcoming Events" />
-            <div className="cards">{upcoming.map((e, i) => <Reveal key={e.id} delay={i * 80}><EventCard e={e} compact /></Reveal>)}</div>
-            <div className="section-link"><Button to="/events" variant="outline" arrow>All events</Button></div>
-          </div>
-        </section>
-      )}
-
-      {(sermons.length > 0 || notices.length > 0) && (
-        <section className={`section ${tone()}`}>
-          <div className="container">
-            {sermons.length > 0 && (
-              <>
-                <SectionHeading eyebrow="Listen" title="Latest Sermons" />
-                <div className="cards">{sermons.map((s, i) => <Reveal key={s.id} delay={i * 80}><SermonCard s={s} /></Reveal>)}</div>
-                <div className="section-link"><Button to="/sermons" variant="outline" arrow>All sermons</Button></div>
-              </>
-            )}
-            {notices.length > 0 && (
-              <div className={sermons.length ? 'home-notices' : ''}>
-                <SectionHeading eyebrow="Notice board" title="Announcements" />
-                <div className="grid grid--3">
-                  {notices.map((a) => (
-                    <Reveal key={a.id}>
-                      <article className="card notice-card fx fx-side fx-tint">
-                        <span className="badge">{fmtDate(a.date, { day: 'numeric', month: 'short' })}</span>
-                        <h3>{a.title}</h3>
-                        <p>{a.text}</p>
-                      </article>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       {!user && (
         <section className="join wave-top">

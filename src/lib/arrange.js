@@ -10,3 +10,7 @@ export const newestFirst = (list = []) => [...list].sort((a, b) => key(b.date).l
 export const upcomingEvents = (list = []) => list.filter((e) => key(e.date) >= todayISO()).sort((a, b) => key(a.date).localeCompare(key(b.date)));
 export const pastEvents = (list = []) => newestFirst(list.filter((e) => key(e.date) < todayISO()));
 export const fmtDate = (d, o = { day: 'numeric', month: 'short', year: 'numeric' }) => (d ? new Date(`${d}T00:00:00`).toLocaleDateString('en-GB', o) : '');
+
+// Public visibility for content the admin can hide (announcements, events, sermons):
+// hidden when "Show on the website" is off, or when the optional "Hide after" date has passed.
+export const isVisible = (r) => r.published !== false && !(r.expires && key(r.expires) < todayISO());

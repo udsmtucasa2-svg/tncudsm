@@ -1,0 +1,77 @@
+/* ======================================================================
+   Styles for AnnouncementCard only. Keep rules for this component in this file.
+   Teal-to-navy panel (brand tokens), a soft gold circle in the corner, a PDF file icon and the date.
+   ====================================================================== */
+.acard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 250px;
+  height: 100%;
+  padding: 28px 22px;
+  border-radius: var(--radius);
+  background: var(--grad-hero);
+  color: var(--white);
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+a.acard:hover, a.acard:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 36px color-mix(in srgb, var(--navy) 26%, transparent); }
+
+/* gold circle peeking from the top-right corner */
+.acard__blob {
+  position: absolute;
+  z-index: -1;
+  top: -70px;
+  right: -60px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 78%, #fff) 0%, color-mix(in srgb, var(--gold) 70%, #c8553d) 100%);
+  opacity: .9;
+  transition: transform .6s var(--ease);
+}
+a.acard:hover .acard__blob { transform: scale(1.12); }
+
+/* white file icon with a red PDF label */
+.acard__pdf {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 78px;
+  border-radius: 10px 22px 10px 10px;
+  background: var(--white);
+  color: var(--gray);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--navy) 30%, transparent);
+}
+.acard__pdf svg { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); stroke-width: 1.2; }
+.acard__pdf b {
+  position: relative;
+  padding: 3px 7px;
+  border-radius: 5px;
+  background: #E8503A;
+  color: var(--white);
+  font: 700 14px var(--font);
+  letter-spacing: .02em;
+}
+
+.acard__text { display: grid; gap: 4px; }
+.acard__date { font: 700 clamp(1.4rem, 2.6vw, 1.75rem) var(--font); line-height: 1.2; letter-spacing: .01em; }
+.acard__label { color: var(--on-dark); font-size: 1rem; font-weight: 500; }
+.acard__title { margin-top: 4px; color: var(--on-dark); font-size: 13.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Phones: slightly smaller, same layout (cards sit in a sideways-scrolling strip, see .hrow in styles/card.css) */
+@media (max-width: 560px) {
+  .acard { min-height: 210px; padding: 20px 14px; gap: 12px; border-radius: 12px; }
+  .acard__blob { top: -60px; right: -50px; width: 150px; height: 150px; }
+  .acard__pdf { width: 54px; height: 66px; border-radius: 9px 18px 9px 9px; }
+  .acard__pdf b { font-size: 12px; padding: 2px 6px; }
+  .acard__date { font-size: 1.25rem; }
+  .acard__label { font-size: .92rem; }
+}

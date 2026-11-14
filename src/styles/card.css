@@ -137,3 +137,23 @@ a.ecard:hover .ecard__media img { transform: scale(1.05); }
   .facts > div { grid-template-columns: 84px 1fr; gap: 8px; font-size: 13px; }
   .facts dt svg { width: 14px; height: 14px; }
 }
+
+/* ---------- Horizontal preview rows (home page: announcements, events, sermons; also the News page) ----------
+   Desktop: cards sit side by side and wrap onto the next line when they run out of room.
+   Phones: one line that slides sideways with a snap, so a long list never becomes a tall stack.
+   Put .hrow on the wrapper and .hrow__item on each card wrapper. .hrow--notices = narrower cards.
+   .hrow--wrap = keep wrapping on phones too (two per line) instead of sliding. */
+.hrow { --hrow-w: 340px; --hrow-gap: 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--hrow-gap); }
+.hrow > .hrow__item { flex: 0 0 var(--hrow-w); max-width: 100%; }
+.hrow--notices { --hrow-w: 216px; --hrow-gap: 20px; }
+@media (max-width: 720px) {
+  .hrow { flex-wrap: nowrap; justify-content: flex-start; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 4vw; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin-inline: -4vw; padding: 4px 4vw 18px; }
+  .hrow::-webkit-scrollbar { display: none; }
+  .hrow > .hrow__item { flex: 0 0 78%; max-width: 320px; scroll-snap-align: start; }
+  .hrow--notices > .hrow__item { flex-basis: 58%; max-width: 230px; }
+  .hrow--wrap { flex-wrap: wrap; justify-content: center; overflow: visible; scroll-snap-type: none; margin-inline: 0; padding: 0; gap: 12px; }
+  .hrow--wrap > .hrow__item { flex: 0 0 calc(50% - 6px); max-width: none; }
+}
+@media (max-width: 380px) {
+  .hrow--wrap > .hrow__item { flex-basis: 100%; }
+}

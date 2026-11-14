@@ -27,7 +27,7 @@ For each `<name>` in `leaders, departments, events, sermons, announcements, reso
 - leaders: `name, position, section, level(head|deputy|member), order, phone, email, bio, photo, published`
 - events: `title, date(YYYY-MM-DD), time, location, description, image`
 - sermons: `title, speaker, date, series, url`
-- announcements: `title, date, text`
+- announcements: `title, date, pdf` (`pdf` is the URL returned by `/manage/uploads/`; `/manage/uploads/` must accept `application/pdf` as well as images. Old rows may still carry `text`.)
 - resources: `title, type, url`
 - gallery: `caption, src`
 - services: `name, day, time, place`

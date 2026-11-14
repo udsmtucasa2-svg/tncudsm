@@ -2,8 +2,9 @@
 // - VITE_API_URL set   -> Django REST backend (public reads, /me/ for members, /manage/ for the admin).
 // - VITE_API_URL empty -> local preview mode (src/services/store.js + localMembers.js).
 // Role checks are enforced by the backend. The frontend only shows what the API returns.
-import { store, imageToDataUrl } from './store.js';
+import { store, imageToDataUrl, fileToDataUrl } from './store.js';
 import { local } from './localMembers.js';
+import { isVisible } from '../lib/arrange.js';
 
 const BASE = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
 export const isLocalMode = !BASE;
@@ -29,10 +30,13 @@ const json = (method, body) => ({ method, body: JSON.stringify(body) });
 const upload = async (path, file) => { const body = new FormData(); body.append('file', file); return (await request(path, { method: 'POST', body })).url; };
 
 // ---- Public reads ----
+// Announcements, events and sermons the admin has hidden (or let expire) never reach the public pages.
+// The backend should filter these too; this is a safety net for the preview and for old data.
+const HIDEABLE = ['announcements', 'events', 'sermons'];
 const publicList = async (name) => {
-  if (BASE) return request(`/${name}/`);
-  const rows = await store.list(name);
-  if (name === 'leaders') return rows.filter((l) => l.published !== false && l.name);
+  const rows = BASE ? await request(`/${name}/`) : await store.list(name);
+  if (!BASE && name === 'leaders') return rows.filter((l) => l.published !== false && l.name);
+  if (HIDEABLE.includes(name)) return rows.filter(isVisible);
   return rows;
 };
 
@@ -101,6 +105,7 @@ const admin = {
   },
   reset: () => (BASE ? Promise.reject(new Error('Not available when a backend is connected')) : store.reset()),
   upload: async (file) => (BASE ? upload('/manage/uploads/', file) : imageToDataUrl(file)),
+  uploadPdf: async (file) => (BASE ? upload('/manage/uploads/', file) : fileToDataUrl(file)),
 
   // Families and graduation
   previewFamilies: (size) => (BASE ? request('/manage/families/preview/', json('POST', { size })) : local.previewFamilies({ size })),
