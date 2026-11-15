@@ -80,6 +80,7 @@ export function Login() {
       <form onSubmit={f.submit}>
         <Field label="Phone number or email" type="text" inputMode="email" autoComplete="username" placeholder="0712 345 678 or you@example.com" value={f.form.identifier} onChange={f.set('identifier')} />
         <PasswordField autoComplete="current-password" value={f.form.password} onChange={f.set('password')} />
+        <p className="auth__forgot"><Link to="/forgot-password">Forgot password?</Link></p>
         {f.error && <p className="form-error" role="alert">{f.error}</p>}
         <button className="btn btn--primary btn--block" type="submit" disabled={f.busy}><span>{f.busy ? 'Signing in...' : `Sign in as ${ROLES.find((r) => r.key === role).label}`}</span></button>
       </form>

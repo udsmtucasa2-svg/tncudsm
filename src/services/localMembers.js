@@ -4,7 +4,7 @@ import { store } from './store.js';
 import { academicStart, graduationYearFor, hasFinished, isStudent, currentYearOfStudy, normEmail, normPhone, parseIdentifier, catLabel } from '../lib/members.js';
 import { generateFamilies, pickFamilyFor, familyName } from '../lib/families.js';
 
-const strip = ({ passwordHash, ...rest }) => rest;
+const strip = ({ passwordHash, resetToken, resetKey, resetExpires, ...rest }) => rest;
 
 // Preview only: a salted SHA-256. The real backend must use a proper password hasher.
 async function hash(email, password) {
@@ -101,6 +101,35 @@ export const local = {
     });
   },
 
+    async requestReset({ identifier }) {
+    const id = parseIdentifier(identifier);
+    if (!id) throw new Error('Enter a valid phone number or email.');
+    const token = crypto.randomUUID().replace(/-/g, '');
+    return store.transact((state) => {
+      const m = state.members.find((x) => (id.type === 'email' ? x.email === id.value : x.phone && normPhone(x.phone) === normPhone(id.value)));
+      if (!m) return { ok: true };
+      m.resetToken = token;
+      m.resetKey = idKey(id);
+      m.resetExpires = Date.now() + 30 * 60 * 1000;
+      return { ok: true, previewToken: token };
+    });
+  },
+
+  async resetPassword({ token, password }) {
+    const valid = (state) => {
+      const m = token ? state.members.find((x) => x.resetToken === token) : null;
+      if (!m || !m.resetExpires || m.resetExpires < Date.now()) throw new Error('This reset link is invalid or has expired.');
+      return m;
+    };
+    const key = await store.transact((state) => valid(state).resetKey);
+    const passwordHash = await hash(key, password);
+    return store.transact((state) => {
+      const m = valid(state);
+      m.passwordHash = passwordHash;
+      delete m.resetToken; delete m.resetKey; delete m.resetExpires;
+      return { ok: true };
+    });
+  },
   me: (id) => store.transact((state) => {
     graduate(state);
     const m = state.members.find((x) => String(x.id) === String(id));

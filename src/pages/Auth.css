@@ -37,3 +37,8 @@
   .auth__box h1 { font-size: 1.35rem; font-weight: 600; }
   .auth__sub { font-size: 13.5px; margin-bottom: 16px; }
 }
+.auth__forgot { text-align: right; margin: -6px 0 16px; font-size: 14px; }
+.auth__forgot a { color: var(--teal); font-weight: 600; }
+.auth__forgot a:hover { text-decoration: underline; }
+.auth__preview { margin: 0 0 8px; padding: 10px 12px; border-radius: 8px; background: var(--gray-soft); font-size: 13.5px; color: #4b5d78; }
+.auth__preview a { color: var(--teal); font-weight: 600; }

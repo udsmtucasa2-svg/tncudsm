@@ -31,6 +31,7 @@ import Dashboard from './admin/Dashboard.jsx';
 import Manager from './admin/Manager.jsx';
 import MembersAdmin from './admin/MembersAdmin.jsx';
 import FamiliesAdmin from './admin/FamiliesAdmin.jsx';
+import { ForgotPassword, ResetPassword } from './pages/ForgotPassword.jsx';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -77,6 +78,8 @@ function PublicSite() {
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/sermons" element={<Sermons />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<MemberDashboard />} />
           <Route path="*" element={<NotFound />} />

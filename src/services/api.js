@@ -71,6 +71,16 @@ const auth = {
     writeSession(user);
     return user;
   },
+    forgotPassword: async ({ identifier }) => {
+    const who = (identifier || '').trim();
+    if (BASE) return request('/auth/password-reset/', json('POST', { identifier: who }));
+    if (who.toLowerCase() === LOCAL_ADMIN_EMAIL) throw new Error('Local preview: change VITE_LOCAL_ADMIN_PASSWORD in your .env file.');
+    return local.requestReset({ identifier: who });
+  },
+  resetPassword: async ({ token, password }) => {
+    if (BASE) return request('/auth/password-reset/confirm/', json('POST', { token, password }));
+    return local.resetPassword({ token, password });
+  },
   logout: async () => {
     if (BASE) { try { await request('/auth/logout/', { method: 'POST' }); } catch { /* ignore */ } }
     writeSession(null);
